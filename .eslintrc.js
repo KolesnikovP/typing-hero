@@ -21,11 +21,15 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/prop-types': 'off',
+    'react/jsx-max-props-per-line': [1, { maximum: { multi: 3 } }],
     'no-console': 'off',
     'prettier/prettier': 'error',
     semi: 0,
+    'jsx-a11y/no-noninteractive-tabindex': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
     'no-trailing-spaces': 'off',
     'no-unused-vars': 'off',
+    'import/prefer-default-export': 'off',
     'react/function-component-definition': [
       2,
       {

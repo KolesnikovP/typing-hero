@@ -1,26 +1,25 @@
 import { Button, Form, Input } from 'antd'
-import React, { useEffect, useState } from 'react'
-import classNames from 'classnames/bind'
-import { nanoid } from 'nanoid'
-import styles from './style.module.css'
+import React, { useState } from 'react'
+import { observer } from 'mobx-react-lite'
 import CustomSpan from './CustomSpan/CustomSpan'
+import { useStores } from '../../hooks/storeHooks'
 
 const { TextArea } = Input
 
-const TypingInput: React.FC = () => {
-  const [text, setText] = useState<string>('')
+const TypingInput: React.FC = observer(() => {
   const [typingText, setTypingText] = useState<string>('Enter text here and click "use this template"')
-  const [isActive, setIsActive] = useState<boolean>(false)
 
   const onFinish = (values: { typingText: string }) => {
     console.log(values)
     setTypingText(values.typingText)
   }
 
-  const check = (word?: string): void => {
-    console.log(word)
-    setIsActive((prevState) => !prevState)
-  }
+  const { typingStore } = useStores()
+  const { next } = typingStore
+  console.log(next, 'next')
+  typingStore.changeNext()
+  console.log(next, 'next')
+  console.log(typingStore, 'typing')
   return (
     <div>
       {typingText && (
@@ -48,6 +47,5 @@ const TypingInput: React.FC = () => {
       </Form>
     </div>
   )
-}
-
+})
 export default TypingInput
