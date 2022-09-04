@@ -1,33 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
-import { nanoid } from 'nanoid'
-import styles from '../style.module.css'
+import { observer } from 'mobx-react-lite'
+import styles from './style.module.css'
+import { useStores } from '../../../hooks/storeHooks'
 
 const cx = classNames.bind(styles)
 
-const CustomSpan = ({ letter }: { letter: string }) => {
-  const [isActive, setIsActive] = useState<boolean>(false)
-  const className = cx('word', {
+type CustomSpanType = {
+  letter: string
+  isActive: boolean
+}
+
+const CustomSpan: React.FC<CustomSpanType> = observer(({ letter, isActive }) => {
+  const { typingStore } = useStores()
+  const className = cx('letter', {
     isActiveWord: isActive
   })
-
-  const check = (word?: string): void => {
-    console.log(word)
-    setIsActive((prevState) => !prevState)
-  }
-  const keyChecker = (event: any) => {
-    // event.preventDefault()
-    if (event.key === letter) {
-      setIsActive(false)
-      console.log('work')
-    }
-    console.log(event, 'key')
-  }
-  return (
-    <span className={className} onClick={() => check(letter)} onKeyUp={keyChecker} tabIndex={0}>
-      {letter}
-    </span>
-  )
-}
+  return <span className={className}>{letter}</span>
+})
 
 export default CustomSpan

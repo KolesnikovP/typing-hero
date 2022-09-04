@@ -2,6 +2,7 @@ import { AppstoreOutlined, HomeOutlined, ProfileOutlined, UserOutlined } from '@
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
 import React, { useState } from 'react'
+import styles from './style.module.css'
 
 const items: MenuProps['items'] = [
   {
@@ -65,7 +66,7 @@ const Header: React.FC = () => {
     setCurrent(e.key)
   }
 
-  return <Menu onClick={onClick} selectedKeys={[current]} mode='horizontal' items={items} />
+  return <Menu className={styles.Header} onClick={onClick} selectedKeys={[current]} mode='horizontal' items={items} />
 }
 
 export default Header

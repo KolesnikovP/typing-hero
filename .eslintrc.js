@@ -24,6 +24,7 @@ module.exports = {
     'react/jsx-max-props-per-line': [1, { maximum: { multi: 3 } }],
     'no-console': 'off',
     'prettier/prettier': 'error',
+    'no-undef': 'off',
     semi: 0,
     'jsx-a11y/no-noninteractive-tabindex': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
