@@ -7,31 +7,55 @@ import { useStores } from '../../hooks/storeHooks'
 const { TextArea } = Input
 
 const TypingInput: React.FC = observer(() => {
-  const [typingText, setTypingText] = useState<string>('Enter text here and click "use this template"')
+  const [typingText, setTypingText] = useState<Array<string | number>>('Enter text here and click "use this template"'.split(''))
   const [actionIsStarted, setActionIsStarted] = useState<boolean>(false)
   const [currentKey, setCurrentKey] = useState<string>('')
+  const [indexForCheck, setIndexForCheck] = useState<number>(0)
 
   const onFinish = (values: { typingText: string }) => {
-    console.log(values)
-    setTypingText(values.typingText)
+    // console.log(values)
+    const textToArray: Array<string | number> = values.typingText.split('')
+    setTypingText(textToArray)
   }
 
   const { typingStore } = useStores()
 
   const keyChecker = (event: React.KeyboardEvent) => {
-    if (actionIsStarted) {
+    console.log(event.key, 'event.key');
+    
       setCurrentKey(event.key)
+  }
+
+  const checkIsActive = (gameArray: Array<string | number>, currentIndex: number): boolean => {
+    if(currentIndex == 0){
+      return true
+    } 
+      // } else if (gameArray[currentIndex])
+    return false
+  }
+
+  const isActive = (typingText: string, number: number, letter: string, event: React.KeyboardEvent): boolean => {
+    const text = typingText.split('')
+    if(event.key === text[number]){
+      return true
     }
+    return false
   }
   return (
     <div onKeyUp={keyChecker}>
       {typingText && (
         <div className='template'>
-          {typingText.split('').map((letter: string, key: number) => (
-            <CustomSpan key={key} letter={letter} isActive={currentKey === letter} />
-          ))}
+          {typingText.map((letter, key) => (
+            <CustomSpan 
+              key={key + Math.random().toString()}
+              number={key} 
+              letter={letter}
+              // isActive={currentKey === typingText[key]}/>
+              isActive={checkIsActive(typingText, key)}/>
+              ))}
         </div>
       )}
+
       <Form onFinish={onFinish}>
         <Form.Item name={['typingText']}>
           <TextArea
@@ -39,7 +63,7 @@ const TypingInput: React.FC = observer(() => {
             maxLength={300}
             style={{ height: 320, width: 600 }}
             // onChange={onChange}
-            placeholder={typingText}
+            placeholder={typingText.join('')}
           />
         </Form.Item>
         <Form.Item>
