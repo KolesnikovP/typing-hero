@@ -1,0 +1,83 @@
+/*!**********************************************************************!*\
+  !*** css ../node_modules/css-loader/dist/cjs.js!./styles/styles.css ***!
+  \**********************************************************************/
+body {
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/*!*************************************************************************************************************!*\
+  !*** css ../node_modules/css-loader/dist/cjs.js!../node_modules/sass-loader/dist/cjs.js!./styles/test.scss ***!
+  \*************************************************************************************************************/
+.card {
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  border: 1px solid #ccc;
+}
+.card h2 {
+  text-align: center;
+  color: darkred;
+}
+/*!*************************************************************************************************************!*\
+  !*** css ../node_modules/css-loader/dist/cjs.js!../node_modules/less-loader/dist/cjs.js!./styles/test.less ***!
+  \*************************************************************************************************************/
+.box {
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  border: 1px solid #ccc;
+}
+.box h2 {
+  text-align: center;
+  color: darkblue;
+}
+
+/*!*******************************************************************************************************!*\
+  !*** css ../node_modules/css-loader/dist/cjs.js!./Components/TypingInput/CustomSpan/style.module.css ***!
+  \*******************************************************************************************************/
+.wAnyMZwLB189nFP02wIf {
+    padding: 1px;
+}
+
+.B_GITg8qs2AIwyoP0VLS {
+    color: #1890ff;
+    animation-duration: 1.3s;
+    animation-name: RSSultD7REJRaIbuR13R;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes RSSultD7REJRaIbuR13R {
+    0% {
+        border-bottom: 2px solid rgba(24, 144, 255, 1);
+    }
+
+    50% {
+        border-bottom: 2px solid rgba(24, 144, 255, 0.1);
+    }
+
+    100% {
+        border-bottom: 2px solid rgba(24, 144, 255, 0.8);
+    }
+}
+
+/*!***************************************************************************************!*\
+  !*** css ../node_modules/css-loader/dist/cjs.js!./Components/Header/style.module.css ***!
+  \***************************************************************************************/
+.I5ediYCOmbeREJk5Jk4w {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
