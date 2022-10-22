@@ -1,73 +1,66 @@
 import { Button, Form, Input } from 'antd'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import CustomSpan from './CustomSpan/CustomSpan'
 import { useStores } from '../../hooks/storeHooks'
+import { checkIgnoreKeys } from './Utils/checkIgnoreKeys'
 
 const { TextArea } = Input
 
 const TypingInput: React.FC = observer(() => {
-  const [typingText, setTypingText] = useState<Array<string | number>>('Enter text here and click "use this template"'.split(''))
-  const [actionIsStarted, setActionIsStarted] = useState<boolean>(false)
+  const [typingText, setTypingText] = useState<Array<string | number>>(
+    'Enter text here and click "use this template"'.split('')
+  )
+  const [isStarted, setIsStarted] = useState<boolean>(false)
   const [currentKey, setCurrentKey] = useState<string>('')
   const [indexForCheck, setIndexForCheck] = useState<number>(0)
 
-  const onFinish = (values: { typingText: string }) => {
-    // console.log(values)
-    const textToArray: Array<string | number> = values.typingText.split('')
-    setTypingText(textToArray)
+  const onFinish = (values: { textFromInput: string | undefined }) => {
+    console.log(values.textFromInput, 'onFinish')
+    setIsStarted(true)
+    if (values.textFromInput) {
+      const textToArray: Array<string | number> = values.textFromInput.split('')
+      setTypingText(textToArray)
+    }
   }
 
   const { typingStore } = useStores()
 
   const keyChecker = (event: React.KeyboardEvent) => {
-    console.log(event.key, 'event.key');
-    
-      setCurrentKey(event.key)
-  }
-
-  const checkIsActive = (gameArray: Array<string | number>, currentIndex: number): boolean => {
-    if(currentIndex == 0){
-      return true
-    } 
-      // } else if (gameArray[currentIndex])
-    return false
-  }
-
-  const isActive = (typingText: string, number: number, letter: string, event: React.KeyboardEvent): boolean => {
-    const text = typingText.split('')
-    if(event.key === text[number]){
-      return true
+    if (checkIgnoreKeys(event.key)) {
+      return
     }
-    return false
+    if (isStarted) {
+      setIndexForCheck((prevIndex) => prevIndex + 1)
+      setCurrentKey(event.key)
+    }
   }
+
   return (
     <div onKeyUp={keyChecker}>
       {typingText && (
         <div className='template'>
-          {typingText.map((letter, key) => (
-            <CustomSpan 
-              key={key + Math.random().toString()}
-              number={key} 
-              letter={letter}
+          {typingText.map((letter, index) => (
+            <CustomSpan
+              key={letter + Math.random().toString()}
+              number={index}
+              letterInGameArray={letter}
+              letterOnKeyUp={currentKey}
+              typingText={typingText}
+              indexForCheck={indexForCheck}
               // isActive={currentKey === typingText[key]}/>
-              isActive={checkIsActive(typingText, key)}/>
-              ))}
+              // isActive={checkIsActive(typingText, index)}/>
+            />
+          ))}
         </div>
       )}
 
-      <Form onFinish={onFinish}>
-        <Form.Item name={['typingText']}>
-          <TextArea
-            showCount
-            maxLength={300}
-            style={{ height: 320, width: 600 }}
-            // onChange={onChange}
-            placeholder={typingText.join('')}
-          />
+      <Form onFinish={onFinish} name='basic'>
+        <Form.Item name='textFromInput'>
+          <TextArea maxLength={300} style={{ height: 120, width: 600 }} placeholder={typingText.join('')} />
         </Form.Item>
         <Form.Item>
-          <Button type='primary' htmlType='submit' onClick={() => setActionIsStarted(true)}>
+          <Button type='primary' htmlType='submit'>
             Use this template
           </Button>
         </Form.Item>
