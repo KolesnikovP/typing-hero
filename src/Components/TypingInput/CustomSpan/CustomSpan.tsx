@@ -14,20 +14,18 @@ type CustomSpanType = {
   indexForCheck: number
 }
 
-const CustomSpan: React.FC<CustomSpanType> = observer(({ letterInGameArray, number, typingText, letterOnKeyUp, indexForCheck }) => {
-  console.log(number, 'number');
-  // console.log(letter, 'letter');
-  console.log(letterInGameArray, 'letterInGameArray');
-  console.log(letterOnKeyUp, 'letterOnKeyUp');
-  
-  const { typingStore } = useStores()
-  const className = cx('letter', {
-    // number === 0 нужен чтобы в начале игры первая буква сразу мигала
-    // isActiveWord: number === 0 
-    isActiveWord: number === indexForCheck
-  })
+const CustomSpan: React.FC<CustomSpanType> = observer(
+  ({ letterInGameArray, number, typingText, letterOnKeyUp, indexForCheck }) => {
+    const { typingStore } = useStores()
+    const className = cx('letter', {
+      // number === 0 нужен чтобы в начале игры первая буква сразу мигала
+      // isActiveWord: number === 0
+      isActiveWord: number === indexForCheck,
+      isTaped: number < indexForCheck
+    })
 
-  return <span className={className}>{letterInGameArray}</span>
-})
+    return <span className={className}>{letterInGameArray}</span>
+  }
+)
 
 export default CustomSpan

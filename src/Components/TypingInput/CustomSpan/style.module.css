@@ -10,6 +10,10 @@
     animation-timing-function: linear;
 }
 
+.isTaped {
+    color: darkgray;
+}
+
 @keyframes pulse {
     0% {
         border-bottom: 2px solid rgba(24, 144, 255, 1);
