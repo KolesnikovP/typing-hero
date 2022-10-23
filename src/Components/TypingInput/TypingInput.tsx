@@ -31,8 +31,10 @@ const TypingInput: React.FC = observer(() => {
       return
     }
     if (isStarted) {
-      setIndexForCheck((prevIndex) => prevIndex + 1)
-      setCurrentKey(event.key)
+      if (event.key === typingText[indexForCheck]) {
+        setIndexForCheck((prevIndex) => prevIndex + 1)
+        setCurrentKey(event.key)
+      }
     }
   }
 
