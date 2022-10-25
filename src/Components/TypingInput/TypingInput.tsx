@@ -55,8 +55,6 @@ const TypingInput: React.FC = observer(() => {
               typingText={typingText}
               indexForCheck={indexForCheck}
               isMistake={isMistake}
-              // isActive={currentKey === typingText[key]}/>
-              // isActive={checkIsActive(typingText, index)}/>
             />
           ))}
         </div>

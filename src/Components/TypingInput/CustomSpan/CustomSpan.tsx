@@ -19,8 +19,6 @@ const CustomSpan: React.FC<CustomSpanType> = observer(
   ({ letterInGameArray, number, typingText, letterOnKeyUp, indexForCheck, isMistake }) => {
     const { typingStore } = useStores()
     const className = cx('letter', {
-      // number === 0 нужен чтобы в начале игры первая буква сразу мигала
-      // isActiveWord: number === 0
       isActiveWord: number === indexForCheck,
       isTaped: number < indexForCheck,
       isMistake: isMistake && number === indexForCheck
