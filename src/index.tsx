@@ -1,5 +1,4 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
 import './styles/styles.css'
 import './styles/test.scss'
 import './styles/test.less'
@@ -7,6 +6,7 @@ import 'antd/dist/antd.css'
 import TypingInput from './Components/TypingInput/TypingInput'
 import Header from './Components/Header/Header'
 import { stores, StoresProvider } from './Store/stores'
+import { render } from 'react-dom'
 
 const App = (): JSX.Element => (
   <StoresProvider value={stores}>
@@ -25,5 +25,7 @@ const App = (): JSX.Element => (
 
 const container = document.getElementById('root')
 
-const root = createRoot(container!)
-root.render(<App />)
+render(
+  <App />,
+  document.getElementById('root')
+  )
