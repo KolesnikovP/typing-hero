@@ -14,6 +14,7 @@ const TypingInput: React.FC = observer(() => {
   const [isStarted, setIsStarted] = useState<boolean>(false)
   const [currentKey, setCurrentKey] = useState<string>('')
   const [indexForCheck, setIndexForCheck] = useState<number>(0)
+  const [isMistake, setIsMistake] = useState<boolean>(false)
 
   const onFinish = (values: { textFromInput: string | undefined }) => {
     console.log(values.textFromInput, 'onFinish')
@@ -31,8 +32,13 @@ const TypingInput: React.FC = observer(() => {
       return
     }
     if (isStarted) {
-      setIndexForCheck((prevIndex) => prevIndex + 1)
-      setCurrentKey(event.key)
+      if (event.key === typingText[indexForCheck]) {
+        setIndexForCheck((prevIndex) => prevIndex + 1)
+        setCurrentKey(event.key)
+        setIsMistake(false)
+      } else {
+        setIsMistake(true)
+      }
     }
   }
 
@@ -48,8 +54,7 @@ const TypingInput: React.FC = observer(() => {
               letterOnKeyUp={currentKey}
               typingText={typingText}
               indexForCheck={indexForCheck}
-              // isActive={currentKey === typingText[key]}/>
-              // isActive={checkIsActive(typingText, index)}/>
+              isMistake={isMistake}
             />
           ))}
         </div>

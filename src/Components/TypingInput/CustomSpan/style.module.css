@@ -1,29 +1,53 @@
 .letter {
     padding: 1px;
+    font-size: 20px;
 }
 
 .isActiveWord {
-    color: #1890ff;
+    color: rgba(42, 157, 143, 1);
     animation-duration: 1.3s;
     animation-name: pulse;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
 
+.isMistake {
+    color: rgba(231, 111, 81, 1);
+    animation-duration: 1.3s;
+    animation-name: mistakePulse;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
 .isTaped {
-    color: darkgray;
+    color: #adb5bd;
 }
 
 @keyframes pulse {
     0% {
-        border-bottom: 2px solid rgba(24, 144, 255, 1);
+        border-bottom: 2px solid rgba(42, 157, 143, 1);
     }
 
     50% {
-        border-bottom: 2px solid rgba(24, 144, 255, 0.1);
+        border-bottom: 2px solid rgba(42, 157, 143, 0.1);
     }
 
     100% {
-        border-bottom: 2px solid rgba(24, 144, 255, 0.8);
+        border-bottom: 2px solid rgba(42, 157, 143, 0.8);
     }
 }
+
+@keyframes mistakePulse {
+    0% {
+        border-bottom: 2px solid rgba(231, 111, 81, 1);
+    }
+
+    50% {
+        border-bottom: 2px solid rgba(231, 111, 81, 0.1);
+    }
+
+    100% {
+        border-bottom: 2px solid rgba(231, 111, 81, 0.8);
+    }
+}
+
