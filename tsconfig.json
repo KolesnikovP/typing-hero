@@ -12,8 +12,16 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+    // все экспорты и импорты абсолютные будут идти из папки src
     "experimentalDecorators": true
   },
+  "lib": [
+    "dom",
+    "es5",
+    "ES2015",
+    "scripthost",
+    "es2015.promise"
+  ],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"

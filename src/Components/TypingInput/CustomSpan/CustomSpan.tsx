@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import classNames from 'classnames/bind'
 import { observer } from 'mobx-react-lite'
 import styles from './style.module.css'
 import { useStores } from '../../../hooks/storeHooks'
-
-const cx = classNames.bind(styles)
+import { classNames } from '../../../shared/lib/classNames/classNames'
+import useTheme from '../../../theme/useTheme'
 
 type CustomSpanType = {
   number: number
@@ -18,13 +17,23 @@ type CustomSpanType = {
 const CustomSpan: React.FC<CustomSpanType> = observer(
   ({ letterInGameArray, number, typingText, letterOnKeyUp, indexForCheck, isMistake }) => {
     const { typingStore } = useStores()
-    const className = cx('letter', {
-      isActiveWord: number === indexForCheck,
-      isTaped: number < indexForCheck,
-      isMistake: isMistake && number === indexForCheck
-    })
+    const { theme } = useTheme()
 
-    return <span className={className}>{letterInGameArray}</span>
+    return (
+      <span
+        className={classNames(
+          styles.letter,
+          {
+            [styles.isActiveWord]: number === indexForCheck,
+            [styles.isTaped]: number < indexForCheck,
+            [styles.isMistake]: isMistake && number === indexForCheck
+          },
+          [theme]
+        )}
+      >
+        {letterInGameArray}
+      </span>
+    )
   }
 )
 
