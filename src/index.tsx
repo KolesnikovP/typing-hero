@@ -6,16 +6,24 @@ import 'antd/dist/antd.css'
 
 
 import { render } from 'react-dom'
+<<<<<<< Updated upstream
 import { App } from './App'
 import ThemeProvider from './theme/ThemeProvider'
 
 
 
 // const container = document.getElementById('root')
+=======
+import { App } from './app/App'
+import ThemeProvider from './app/providers/ThemeProvider/ui/ThemeProvider'
+import { BrowserRouter } from 'react-router-dom'
+>>>>>>> Stashed changes
 
 render(
-  <ThemeProvider>
-    <App />
-  </ThemeProvider>,
+  <BrowserRouter>
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  </BrowserRouter>,
   document.getElementById('root')
   )
