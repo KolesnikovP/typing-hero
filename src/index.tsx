@@ -4,12 +4,9 @@ import React from 'react'
 // import './styles/test.less'
 import 'antd/dist/antd.css'
 
-
 import { render } from 'react-dom'
-import { App } from './App'
-import ThemeProvider from './theme/ThemeProvider'
-
-
+import { App } from './app/App'
+import ThemeProvider from './app/providers/ThemeProvider/ui/ThemeProvider'
 
 // const container = document.getElementById('root')
 
@@ -18,4 +15,4 @@ render(
     <App />
   </ThemeProvider>,
   document.getElementById('root')
-  )
+)

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import styles from './style.module.css'
-import { useStores } from '../../../hooks/storeHooks'
-import { classNames } from '../../../shared/lib/classNames/classNames'
-import useTheme from '../../../theme/useTheme'
+import { useStores } from 'app/providers/hooks/storeHooks'
+import { classNames } from 'shared/lib/classNames/classNames'
+import { useTheme } from 'app/providers/ThemeProvider'
 
 type CustomSpanType = {
   number: number
