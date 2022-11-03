@@ -1,7 +1,8 @@
-export interface BuildPaths { 
+export interface BuildPaths {
   entry: string
   dist: string
   html: string
+  src: string
 }
 
 export type BuildMode = 'production' | 'development'

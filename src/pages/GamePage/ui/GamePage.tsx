@@ -1,13 +1,16 @@
 import { Button, Form, Input } from 'antd'
 import React, { useCallback, useState } from 'react'
 import { observer } from 'mobx-react-lite'
-import CustomSpan from './CustomSpan/CustomSpan'
-import { useStores } from '../../hooks/storeHooks'
-import { checkIgnoreKeys } from './Utils/checkIgnoreKeys'
+import { useStores } from 'app/providers/hooks/storeHooks'
+import { checkIgnoreKeys } from 'shared/lib/Utils/checkIgnoreKeys'
+import CustomSpan from 'pages/GamePage/ui/CustomSpan/CustomSpan'
+// import CustomSpan from './CustomSpan/CustomSpan'
+// import { useStores } from '../../hooks/storeHooks'
+// import { checkIgnoreKeys } from './Utils/checkIgnoreKeys'
 
 const { TextArea } = Input
 
-const TypingInput: React.FC = observer(() => {
+export const GamePage: React.FC = observer(() => {
   const [typingText, setTypingText] = useState<Array<string | number>>(
     'Enter text here and click "use this template"'.split('')
   )
@@ -73,4 +76,3 @@ const TypingInput: React.FC = observer(() => {
     </div>
   )
 })
-export default TypingInput
