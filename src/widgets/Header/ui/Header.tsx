@@ -3,6 +3,7 @@ import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
 import React, { useState } from 'react'
 import styles from './style.module.css'
+import {useNavigate} from 'react-router-dom'
 
 const items: MenuProps['items'] = [
   {
@@ -58,14 +59,9 @@ const items: MenuProps['items'] = [
   }
 ]
 
-<<<<<<< Updated upstream:src/widgets/Header/Header.tsx
-const Header: React.FC = () => {
-  const [current, setCurrent] = useState('mail')
-=======
 export const Header: React.FC = () => {
   const [current, setCurrent] = useState('main')
   const navigate = useNavigate()
->>>>>>> Stashed changes:src/widgets/Header/ui/Header.tsx
 
   const onClick: MenuProps['onClick'] = (e) => {
     console.log('click ', e)
