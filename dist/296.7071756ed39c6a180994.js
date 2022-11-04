@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_app_template=self.webpackChunkreact_app_template||[]).push([[296],{2296:function(e,t,a){a.r(t);var n=a(5893);t.default=function(){return(0,n.jsx)("div",{children:(0,n.jsx)(n.Fragment,{children:"about page in process"})})}}}]);
