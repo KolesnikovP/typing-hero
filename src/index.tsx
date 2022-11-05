@@ -4,8 +4,8 @@ import React from 'react'
 // import './styles/test.less'
 import 'antd/dist/antd.css'
 
-import { App } from './app/App'
-import ThemeProvider from './app/providers/ThemeProvider/ui/ThemeProvider'
+import { App } from 'app/App'
+import { ThemeProvider } from 'app/providers/ThemeProvider'
 import { BrowserRouter } from 'react-router-dom'
 import { render } from 'react-dom'
 
