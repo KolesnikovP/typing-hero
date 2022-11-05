@@ -3,12 +3,12 @@ import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
 import React, { useState } from 'react'
 import styles from './style.module.css'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const items: MenuProps['items'] = [
   {
     label: 'Главная',
-    key: 'main',
+    key: '/main',
     icon: <HomeOutlined />
   },
   {
@@ -19,7 +19,7 @@ const items: MenuProps['items'] = [
   },
   {
     label: 'Результаты',
-    key: 'results',
+    key: '/results',
     icon: <ProfileOutlined />,
     children: [
       {
@@ -54,20 +54,22 @@ const items: MenuProps['items'] = [
   },
   {
     label: 'Профиль',
-    key: 'profile',
+    key: '/profile',
     icon: <UserOutlined />
   }
 ]
 
-export const Header: React.FC = () => {
-  const [current, setCurrent] = useState('main')
+const Header: React.FC = () => {
+  const [current, setCurrent] = useState('mail')
   const navigate = useNavigate()
 
   const onClick: MenuProps['onClick'] = (e) => {
     console.log('click ', e)
     setCurrent(e.key)
+    navigate(`${e.keyPath}`)
   }
 
   return <Menu className={styles.Header} onClick={onClick} selectedKeys={[current]} mode='horizontal' items={items} />
 }
 
+export default Header
