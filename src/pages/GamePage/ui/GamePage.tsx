@@ -3,16 +3,17 @@ import React, { useCallback, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useStores } from 'app/providers/hooks/storeHooks'
 import { checkIgnoreKeys } from 'shared/lib/Utils/checkIgnoreKeys'
-import CustomSpan from 'pages/GamePage/ui/CustomSpan/CustomSpan'
-// import CustomSpan from './CustomSpan/CustomSpan'
+import CustomSpan from './CustomSpan/CustomSpan'
+import { generateText, mocTexts } from 'shared/assets/mocs/moc'
+import { Modal } from 'shared/ui/Modal/Modal'
+import { values } from 'mobx'
 // import { useStores } from '../../hooks/storeHooks'
-// import { checkIgnoreKeys } from './Utils/checkIgnoreKeys'
 
 const { TextArea } = Input
 
 export const GamePage: React.FC = observer(() => {
-  const [typingText, setTypingText] = useState<Array<string | number>>(
-    'Enter text here and click "use this template"'.split('')
+  const [typingText, setTypingText] = useState<Array<string|number>>(
+    generateText().split('')
   )
   const [isStarted, setIsStarted] = useState<boolean>(false)
   const [currentKey, setCurrentKey] = useState<string>('')
@@ -28,13 +29,19 @@ export const GamePage: React.FC = observer(() => {
     }
   }
 
+  const modalHandler = (value: string): void => {
+    const arrayForTyping = value.split('')
+    setTypingText(arrayForTyping)
+    setIsStarted(true)
+  }
+
   const { typingStore } = useStores()
 
   const keyChecker = (event: React.KeyboardEvent) => {
     if (checkIgnoreKeys(event.key)) {
       return
     }
-    if (isStarted) {
+    // if (isStarted) {
       if (event.key === typingText[indexForCheck]) {
         setIndexForCheck((prevIndex) => prevIndex + 1)
         setCurrentKey(event.key)
@@ -43,11 +50,11 @@ export const GamePage: React.FC = observer(() => {
         setIsMistake(true)
       }
     }
-  }
+  // }
 
   return (
     <div onKeyUp={keyChecker}>
-      {typingText && (
+      {typingText && isStarted && (
         <div className='template'>
           {typingText.map((letter, index) => (
             <CustomSpan
@@ -69,10 +76,11 @@ export const GamePage: React.FC = observer(() => {
         </Form.Item>
         <Form.Item>
           <Button type='primary' htmlType='submit'>
-            Use this template
+            Use a self text
           </Button>
         </Form.Item>
       </Form>
+      <Modal modalHandler={modalHandler}/>
     </div>
   )
 })
