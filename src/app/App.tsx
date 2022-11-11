@@ -5,8 +5,8 @@ import { Theme, ThemeContext } from './providers/ThemeProvider/lib/ThemeContext'
 import { AppRouter } from 'app/router'
 
 import { Header } from 'widgets/Header'
-import { ToggleSwitch } from 'widgets/ToggleSwitch'
 import { useTheme } from 'app/providers/ThemeProvider'
+import { Sidebar } from 'widgets/Sidebar'
 
 
 export const App = (): JSX.Element => {
@@ -16,8 +16,10 @@ export const App = (): JSX.Element => {
     <StoresProvider value={stores}>
         <div className={`app ${theme}`}>
           <Header />
-          <ToggleSwitch/>
-          <AppRouter />
+          <div className={'content-page'}>
+            <Sidebar/>
+            <AppRouter/>
+          </div>
           {/* <div className={`app ${theme}`}>{<GamePage />}</div> */}
         </div>
     </StoresProvider>
