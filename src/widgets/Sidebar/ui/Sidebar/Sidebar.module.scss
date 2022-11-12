@@ -4,6 +4,7 @@
   height: calc(100vh - var(--header-height));
   transition: width 0.3s;
   position: relative;
+  color: var(--secondary-font-color)
 }
 
 .collapsed {
