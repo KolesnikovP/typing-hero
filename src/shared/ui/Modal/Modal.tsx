@@ -3,6 +3,7 @@ import { Button, Modal as ModalAnt } from 'antd';
 import { classNames } from 'shared/lib/classNames/classNames'
 import { useState } from 'react'
 import TextArea from 'antd/lib/input/TextArea'
+import { useTranslation } from 'react-i18next'
 
 interface ModalProps {
   className?: string
@@ -26,10 +27,11 @@ export const Modal = ({className,modalHandler}: ModalProps) => {
     setIsModalOpen(false);
   };
 
+  const {t} = useTranslation('gamepage')
   return (
     <>
       <Button type="primary" onClick={showModal}>
-        Open Modal
+        {t('openModal')}
       </Button>
       <ModalAnt title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <TextArea
