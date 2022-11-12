@@ -22,6 +22,8 @@ export const GamePage: React.FC = observer(() => {
 
   const onFinish = (values: { textFromInput: string | undefined }) => {
     console.log(values.textFromInput, 'onFinish')
+    setCurrentKey('')
+    setIndexForCheck(0)
     setIsStarted(true)
     if (values.textFromInput) {
       const textToArray: Array<string | number> = values.textFromInput.split('')
@@ -30,6 +32,10 @@ export const GamePage: React.FC = observer(() => {
   }
 
   const modalHandler = (value: string): void => {
+    // очищаем стейты
+    setCurrentKey('')
+    setIndexForCheck(0)
+    // и новый стейт из модалки
     const arrayForTyping = value.split('')
     setTypingText(arrayForTyping)
     setIsStarted(true)
