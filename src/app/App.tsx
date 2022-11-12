@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, Suspense } from 'react'
 import { stores, StoresProvider } from 'app/providers/Store/stores'
 import './styles/index.scss'
 import { Theme, ThemeContext } from './providers/ThemeProvider/lib/ThemeContext'
@@ -9,10 +9,13 @@ import { useTheme } from 'app/providers/ThemeProvider'
 import { Sidebar } from 'widgets/Sidebar'
 
 
+
 export const App = (): JSX.Element => {
   const { theme } = useTheme()
 
   return (
+    <>
+      <Suspense fallback='...loading'>
     <StoresProvider value={stores}>
         <div className={`app ${theme}`}>
           <Header />
@@ -23,5 +26,7 @@ export const App = (): JSX.Element => {
           {/* <div className={`app ${theme}`}>{<GamePage />}</div> */}
         </div>
     </StoresProvider>
+      </Suspense>
+    </>
   )
 }

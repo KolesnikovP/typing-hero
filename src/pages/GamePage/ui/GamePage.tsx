@@ -7,6 +7,7 @@ import CustomSpan from './CustomSpan/CustomSpan'
 import { generateText, mocTexts } from 'shared/assets/mocs/moc'
 import { Modal } from 'shared/ui/Modal/Modal'
 import { values } from 'mobx'
+import { useTranslation } from 'react-i18next'
 // import { useStores } from '../../hooks/storeHooks'
 
 const { TextArea } = Input
@@ -57,7 +58,7 @@ export const GamePage: React.FC = observer(() => {
       }
     }
   // }
-
+  const {t} = useTranslation('gamepage')
   return (
     <div onKeyUp={keyChecker}>
       {typingText && isStarted && (
@@ -82,7 +83,7 @@ export const GamePage: React.FC = observer(() => {
         </Form.Item>
         <Form.Item>
           <Button type='primary' htmlType='submit'>
-            Use a self text
+            {t('customText')}
           </Button>
         </Form.Item>
       </Form>
