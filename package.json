@@ -5,7 +5,9 @@
     "start": "webpack serve --env port=3000",
     "build:prod": "webpack --env mode=production",
     "build:dev": "webpack --env mode=development",
-    "ci": "rm -rf node_modules && yarn install --frozen-lockfile"
+    "ci": "rm -rf node_modules && npm install --frozen-lockfile",
+    "lint": "eslint \"**/*.{ts,tsx}\"",
+    "lint-fix": "eslint \"**/*.{ts,tsx}\" --fix"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
@@ -34,9 +36,17 @@
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
     "@types/webpack-dev-server": "^4.7.2",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
     "babel-loader": "^8.2.3",
     "babel-plugin-i18next-extract": "^0.9.0",
     "css-loader": "^6.7.1",
+    "eslint": "8.22.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "less": "^4.1.3",

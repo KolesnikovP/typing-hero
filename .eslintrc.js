@@ -1,63 +1,43 @@
 module.exports = {
-  parser: '@babel/eslint-parser',
-  parserOptions: {
-    requireConfigFile: false,
-    babelOptions: {
-      babelrc: true,
-      configFile: true,
-      presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript']
-    }
-  },
-  plugins: ['@typescript-eslint', 'react-hooks', 'prettier'],
-  ignorePatterns: 'webpack.configs.js',
   env: {
     browser: true,
-    node: true,
-    es6: true
+    es2021: true,
   },
-  extends: ['airbnb', 'prettier'],
-  rules: {
-    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
-    'react/prop-types': 'off',
-    'react/jsx-max-props-per-line': [1, { maximum: { multi: 3 } }],
-    'no-console': 'off',
-    'prettier/prettier': 'error',
-    'no-undef': 'off',
-    semi: 0,
-    'jsx-a11y/no-noninteractive-tabindex': 'off',
-    'jsx-a11y/no-static-element-interactions': 'off',
-    'no-trailing-spaces': 'off',
-    'no-unused-vars': 'off',
-    'import/prefer-default-export': 'off',
-    'react/function-component-definition': [
-      2,
-      {
-        namedComponents: ['arrow-function', 'function-declaration'],
-        unnamedComponents: 'arrow-function'
-      }
-    ],
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never'
-      }
-    ]
-  },
-  settings: {
-    react: {
-      pragma: 'React',
-      version: 'detect'
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
     },
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx']
-      }
-    }
-  }
-}
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  plugins: [
+    'react',
+    '@typescript-eslint',
+  ],
+  rules: {
+    'react/jsx-indent': [0, { indentMode: 2, ignoreTernaryOperator: true }],
+    indent: [2, 2],
+    'no-unused-vars': 'warn',
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', 'tsx', 'ts'] }],
+    'import/no-unresolved': 'off',
+    'import/extensions': 'off',
+    'import/prefer-default-export': 'off',
+    'no-shadow': 'off',
+    'react/function-component-definition': 'off',
+    'react/require-default-props': 'off',
+    'jsx-quotes': [1, 'prefer-single'],
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-props-no-spreading': 'warn',
+    'no-underscore-dangle': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'jsx-a11y/no-static-element-interactions': 'warn',
+  },
+  globals: {
+    __IS_DEV__: true,
+  },
+};

@@ -1,5 +1,5 @@
-import { ResolveOptions } from 'webpack'
-import { BuildOptions } from './types/config.types'
+import { ResolveOptions } from 'webpack';
+import { BuildOptions } from './types/config.types';
 
 export function buildResolvers(options: BuildOptions): ResolveOptions {
   return {
@@ -8,6 +8,6 @@ export function buildResolvers(options: BuildOptions): ResolveOptions {
     modules: [options.paths.src, 'node_modules'],
     // теперь для каждого модуля мейн файл будет индекс
     mainFiles: ['index'],
-    alias: {}
-  }
+    alias: {},
+  };
 }

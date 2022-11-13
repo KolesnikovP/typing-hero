@@ -1,21 +1,23 @@
-import { AppstoreOutlined, HomeOutlined, ProfileOutlined, UserOutlined } from '@ant-design/icons'
-import type { MenuProps } from 'antd'
-import { Menu } from 'antd'
-import React, { useState } from 'react'
-import styles from './style.module.css'
-import { useNavigate } from 'react-router-dom'
+import {
+  AppstoreOutlined, HomeOutlined, ProfileOutlined, UserOutlined,
+} from '@ant-design/icons';
+import type { MenuProps } from 'antd';
+import { Menu } from 'antd';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from './style.module.css';
 
 const items: MenuProps['items'] = [
   {
     label: 'Главная',
     key: '/main',
-    icon: <HomeOutlined />
+    icon: <HomeOutlined />,
   },
   {
     label: 'Режим',
     key: 'app',
     icon: <AppstoreOutlined />,
-    disabled: true
+    disabled: true,
   },
   {
     label: 'Результаты',
@@ -28,13 +30,13 @@ const items: MenuProps['items'] = [
         children: [
           {
             label: 'Option 1',
-            key: 'setting:1'
+            key: 'setting:1',
           },
           {
             label: 'Option 2',
-            key: 'setting:2'
-          }
-        ]
+            key: 'setting:2',
+          },
+        ],
       },
       {
         type: 'group',
@@ -42,34 +44,34 @@ const items: MenuProps['items'] = [
         children: [
           {
             label: 'Option 3',
-            key: 'setting:3'
+            key: 'setting:3',
           },
           {
             label: 'Option 4',
-            key: 'setting:4'
-          }
-        ]
-      }
-    ]
+            key: 'setting:4',
+          },
+        ],
+      },
+    ],
   },
   {
     label: 'Профиль',
     key: '/profile',
-    icon: <UserOutlined />
-  }
-]
+    icon: <UserOutlined />,
+  },
+];
 
 const Header: React.FC = () => {
-  const [current, setCurrent] = useState('mail')
-  const navigate = useNavigate()
+  const [current, setCurrent] = useState('mail');
+  const navigate = useNavigate();
 
   const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e)
-    setCurrent(e.key)
-    navigate(`${e.keyPath}`)
-  }
+    console.log('click ', e);
+    setCurrent(e.key);
+    navigate(`${e.keyPath}`);
+  };
 
-  return <Menu className={styles.Header} onClick={onClick} selectedKeys={[current]} mode='horizontal' items={items} />
-}
+  return <Menu className={styles.Header} onClick={onClick} selectedKeys={[current]} mode='horizontal' items={items} />;
+};
 
-export default Header
+export default Header;
