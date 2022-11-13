@@ -1,4 +1,4 @@
-import { action, observable } from 'mobx'
+import { action, observable } from 'mobx';
 
 interface ITypingStore {
   next: boolean
@@ -7,10 +7,10 @@ interface ITypingStore {
 
 export class TypingStore implements ITypingStore {
   @observable
-  next: boolean = false
+    next: boolean = false;
 
   @action
   changeNext(isNext: boolean) {
-    this.next = isNext
+    this.next = isNext;
   }
 }
