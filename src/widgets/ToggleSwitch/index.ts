@@ -1,1 +1,1 @@
-export {ToggleSwitch} from './ui/ToggleSwitch'
+export { ToggleSwitch } from './ui/ToggleSwitch';

@@ -1,6 +1,6 @@
-import { RouteProps } from 'react-router-dom'
-import { AboutPage } from 'pages/AboutPage'
-import { GamePage } from 'pages/GamePage'
+import { RouteProps } from 'react-router-dom';
+import { AboutPage } from 'pages/AboutPage';
+import { GamePage } from 'pages/GamePage';
 
 export enum AppRoutes {
   TEMP = 'temp',
@@ -16,27 +16,27 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.ABOUT]: '/about',
   [AppRoutes.RESULTS]: '/results',
   [AppRoutes.PROFILE]: '/profile',
-}
+};
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.TEMP]: {
     path: RoutePath.temp,
-    element: <GamePage/>
+    element: <GamePage />,
   },
   [AppRoutes.MAIN]: {
     path: RoutePath.main,
-    element: <GamePage/>
+    element: <GamePage />,
   },
   [AppRoutes.ABOUT]: {
     path: RoutePath.about,
-    element: <AboutPage/>
+    element: <AboutPage />,
   },
   [AppRoutes.RESULTS]: {
     path: RoutePath.results,
-    element: <>result page in progress</>
+    element: <>result page in progress</>,
   },
   [AppRoutes.PROFILE]: {
     path: RoutePath.profile,
-    element: <>profile page in progress</>
+    element: <>profile page in progress</>,
   },
-}
+};
