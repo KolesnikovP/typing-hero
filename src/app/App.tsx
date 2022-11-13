@@ -1,28 +1,30 @@
-import React, { useContext, useState } from 'react'
-import Header from '../widgets/Header/Header'
-import ToggleSwitch from '../widgets/ToggleSwitch/ToggleSwitch'
-import { stores, StoresProvider } from 'app/providers/Store/stores'
-import './styles/index.scss'
-import { Theme, ThemeContext } from './providers/ThemeProvider/lib/ThemeContext'
-import { ThemeProvider, useTheme } from 'app/providers/ThemeProvider'
-import { GamePage } from 'pages/GamePage'
-import { AppRouter } from 'app/router'
+import React, {
+  useContext, useState, Suspense, FC,
+} from 'react';
+import { stores, StoresProvider } from 'app/providers/Store/stores';
+import './styles/index.scss';
+import { AppRouter } from 'app/router';
 
-export const App = (): JSX.Element => {
-  const { theme, toggleTheme } = useTheme()
+import { Header } from 'widgets/Header';
+import { useTheme } from 'app/providers/ThemeProvider';
+import { Sidebar } from 'widgets/Sidebar';
+import { Theme, ThemeContext } from './providers/ThemeProvider/lib/ThemeContext';
+
+export const App: FC = () => {
+  const { theme } = useTheme();
 
   return (
-    <StoresProvider value={stores}>
-      <ThemeProvider>
+    <Suspense fallback='...loading'>
+      <StoresProvider value={stores}>
         <div className={`app ${theme}`}>
           <Header />
-          <ToggleSwitch toggleTheme={toggleTheme} isActive={theme === Theme.DARK}>
-            DarkMode
-          </ToggleSwitch>
-          <AppRouter />
+          <div className='content-page'>
+            <Sidebar />
+            <AppRouter />
+          </div>
           {/* <div className={`app ${theme}`}>{<GamePage />}</div> */}
         </div>
-      </ThemeProvider>
-    </StoresProvider>
-  )
-}
+      </StoresProvider>
+    </Suspense>
+  );
+};

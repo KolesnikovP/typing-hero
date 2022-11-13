@@ -1,19 +1,14 @@
-import React, { Suspense } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import { GamePage } from 'pages/GamePage'
-import { AboutPage } from 'pages/AboutPage'
+import React, { Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { routeConfig } from 'shared/config/routeConfig/routeConfig';
 
-export const AppRouter = () => {
-  return (
-    <Suspense fallback={<h1>Loading profile...</h1>}>
-      <Routes>
-        {/* '/' - временная мера для удобства разработки - после перейдем на main */}
-        <Route path={'/'} element={<GamePage />} />
-        <Route path={'/main'} element={<GamePage />} />
-        <Route path={'/about'} element={<AboutPage />} />
-        <Route path={'/results'} element={<>results in process</>} />
-        <Route path={'/profile'} element={<>profile in process</>} />
-      </Routes>
-    </Suspense>
-  )
-}
+export const AppRouter = () => (
+  <Suspense fallback={<h1>Loading profile...</h1>}>
+    <Routes>
+      {/* '/' - временная мера для удобства разработки - после перейдем на main */}
+      {Object.values(routeConfig).map(({ element, path }) => (
+        <Route key={path} path={path} element={(<div className='page-wrapper'>{element}</div>)} />
+      ))}
+    </Routes>
+  </Suspense>
+);
