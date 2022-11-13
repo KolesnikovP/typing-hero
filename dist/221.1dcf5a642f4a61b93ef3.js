@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkreact_app_template=self.webpackChunkreact_app_template||[]).push([[221],{2221:function(e,t,a){a.r(t);var r=a(5893),n=a(4478);t.default=function(){var e=(0,n.$)("about").t;return(0,r.jsx)("div",{children:(0,r.jsx)(r.Fragment,{children:e("aboutPage")})})}}}]);
