@@ -1,0 +1,31 @@
+name: 'testing, building'
+
+on:
+  push:
+    branches:
+      [ develop ]
+  pull_request:
+    branches:
+      [ develop ]
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Staring Node.js ${{ matrix.node-version }}
+       uses: actions/setup-node@v1
+       with:
+         node-version: ${{ matrix.node-version }}
+
+      - name: install modules
+        run: npm install
+      - name: build production project
+        run: npm run build:prod
+      - name: linting code
+        run: npm run lint
+      - name: unit testing
+        run: npm run test:unit
