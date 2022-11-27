@@ -37,6 +37,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'import/no-extraneous-dependencies': 'off',
     'jsx-a11y/no-static-element-interactions': 'warn',
+    'max-len': ['warn', { code: 140 }],
   },
   globals: {
     __IS_DEV__: true,

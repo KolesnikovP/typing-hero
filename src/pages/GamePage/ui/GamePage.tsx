@@ -62,7 +62,7 @@ export const GamePage: React.FC = observer(() => {
   return (
     <div onKeyUp={keyChecker}>
       {typingText && isStarted && (
-      // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex,jsx-a11y/tabindex-no-positive
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex,jsx-a11y/tabindex-no-positive
         <div className={classNames(cls.TypingArea)}>
           {typingText.map((letter, index) => (
             <CustomSpan
