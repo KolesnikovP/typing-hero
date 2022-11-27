@@ -8,7 +8,7 @@
     "ci": "rm -rf node_modules && npm install --frozen-lockfile",
     "lint": "eslint \"**/*.{ts,tsx}\"",
     "lint-fix": "eslint \"**/*.{ts,tsx}\" --fix",
-    "unit": "jest --config ./config/jest/jest.config.ts"
+    "test:unit": "jest --config ./config/jest/jest.config.ts"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
