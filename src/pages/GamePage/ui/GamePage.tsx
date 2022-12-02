@@ -1,5 +1,5 @@
 import { Button, Form, Input } from 'antd';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStores } from 'app/providers/hooks/storeHooks';
 import { checkIgnoreKeys } from 'shared/lib/Utils/checkIgnoreKeys';
@@ -15,6 +15,8 @@ import CustomSpan from './CustomSpan/CustomSpan';
 const { TextArea } = Input;
 
 export const GamePage: React.FC = observer(() => {
+  const { typingStore } = useStores();
+
   const [typingText, setTypingText] = useState<Array<string|number>>(
     generateText().split(''),
   );
@@ -22,10 +24,12 @@ export const GamePage: React.FC = observer(() => {
   const [currentKey, setCurrentKey] = useState<string>('');
   const [indexForCheck, setIndexForCheck] = useState<number>(0);
   const [isMistake, setIsMistake] = useState<boolean>(false);
+  const refText = useRef<HTMLDivElement>(null);
 
   const onFinish = (values: { textFromInput: string | undefined }) => {
     setCurrentKey('');
     setIndexForCheck(0);
+    refText.current.focus();
     if (values.textFromInput) {
       const textToArray: Array<string | number> = values.textFromInput.split('');
       setTypingText(textToArray);
@@ -40,8 +44,6 @@ export const GamePage: React.FC = observer(() => {
     const arrayForTyping = value.split('');
     setTypingText(arrayForTyping);
   };
-
-  const { typingStore } = useStores();
 
   const keyChecker = (event: React.KeyboardEvent) => {
     console.log(event, 'event');
@@ -62,8 +64,9 @@ export const GamePage: React.FC = observer(() => {
   return (
     <div onKeyUp={keyChecker}>
       {typingText && isStarted && (
+        // eslint-disable-next-line max-len
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex,jsx-a11y/tabindex-no-positive
-        <div className={classNames(cls.TypingArea)}>
+        <div className={classNames(cls.TypingArea)} tabIndex={1} ref={refText}>
           {typingText.map((letter, index) => (
             <CustomSpan
               key={letter + Math.random().toString()}
@@ -79,7 +82,7 @@ export const GamePage: React.FC = observer(() => {
       )}
       <button type='button' onClick={() => setIsStarted(true)}>Begin practice</button>
       {/* eslint-disable-next-line jsx-a11y/tabindex-no-positive */}
-      <Form onFinish={onFinish} name='basic' tabIndex={1}>
+      <Form onFinish={onFinish} name='basic'>
         <Form.Item name='textFromInput'>
           <TextArea maxLength={600} style={{ height: 120, width: 600 }} placeholder={typingText.join('')} />
         </Form.Item>
