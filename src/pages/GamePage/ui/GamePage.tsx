@@ -15,6 +15,8 @@ import CustomSpan from './CustomSpan/CustomSpan';
 const { TextArea } = Input;
 
 export const GamePage: React.FC = observer(() => {
+  const { typingStore } = useStores();
+
   const [typingText, setTypingText] = useState<Array<string|number>>(
     generateText().split(''),
   );
@@ -42,8 +44,6 @@ export const GamePage: React.FC = observer(() => {
     const arrayForTyping = value.split('');
     setTypingText(arrayForTyping);
   };
-
-  const { typingStore } = useStores();
 
   const keyChecker = (event: React.KeyboardEvent) => {
     console.log(event, 'event');
