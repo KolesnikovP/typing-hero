@@ -1,13 +1,15 @@
 import { RouteProps } from 'react-router-dom';
 import { AboutPage } from 'pages/AboutPage';
 import { GamePage } from 'pages/GamePage';
+import { NotFoundPage } from 'pages/NotFoundPage';
 
 export enum AppRoutes {
   TEMP = 'temp',
   MAIN = 'main',
   ABOUT = 'about',
   RESULTS = 'results',
-  PROFILE = 'profile'
+  PROFILE = 'profile',
+  NOT_FOUND = 'not_found'
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
@@ -16,6 +18,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.ABOUT]: '/about',
   [AppRoutes.RESULTS]: '/results',
   [AppRoutes.PROFILE]: '/profile',
+  [AppRoutes.NOT_FOUND]: '*',
 };
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
@@ -38,5 +41,9 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.PROFILE]: {
     path: RoutePath.profile,
     element: <>profile page in progress</>,
+  },
+  [AppRoutes.NOT_FOUND]: {
+    path: RoutePath.not_found,
+    element: <NotFoundPage />,
   },
 };
