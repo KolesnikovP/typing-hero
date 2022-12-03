@@ -2,5 +2,6 @@
   "aboutPage": "aboutPage",
   "customText": "customText",
   "language": "",
-  "openModal": "openModal"
+  "openModal": "openModal",
+  "pageNotFound": "Page not found"
 }
