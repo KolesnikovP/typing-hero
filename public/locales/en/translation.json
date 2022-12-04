@@ -2,5 +2,7 @@
   "en": "English",
   "rus": "Russian",
   "language": "Language",
-  "pageNotFound": "Page not found"
+  "pageNotFound": "Page not found",
+  "ErrorMessage": "Ooops! Something went wrong",
+  "ImitateError": "Imitate Error"
 }
