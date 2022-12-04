@@ -1,5 +1,5 @@
 import React, {
-  useContext, useState, Suspense, FC,
+  useContext, useState, Suspense, FC, useEffect,
 } from 'react';
 import { stores, StoresProvider } from 'app/providers/Store/stores';
 import './styles/index.scss';
@@ -12,6 +12,12 @@ import { Theme, ThemeContext } from './providers/ThemeProvider/lib/ThemeContext'
 
 export const App: FC = () => {
   const { theme } = useTheme();
+
+  useEffect(() => {
+    if (Math.random() < 0.5) {
+      throw new Error();
+    }
+  }, []);
 
   return (
     <Suspense fallback='...loading'>
