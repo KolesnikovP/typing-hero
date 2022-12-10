@@ -19,6 +19,22 @@ export default {
     'node_modules',
   ],
 
+  // The glob patterns Jest uses to detect test files
+  testMatch: [
+    '<rootDir>src/**/*(*.)@(spec|test).[jt]s?(x)',
+  ],
+
+  // абсолютные импорты для тестов
+  modulePaths: ['<rootDir>/src'],
+
+  // для работы jest with react testing library
+  setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
+
+  // для моков стилей
+  moduleNameMapper: {
+    '\\.(s?css|less)$': 'identity-obj-proxy',
+  },
+
   // An array of file extensions your modules use
   moduleFileExtensions: [
     'js',
@@ -29,11 +45,6 @@ export default {
     'tsx',
     'json',
     'node',
-  ],
-
-  // The glob patterns Jest uses to detect test files
-  testMatch: [
-    '<rootDir>src/**/*(*.)@(spec|test).[jt]s?(x)',
   ],
 
   // All imported modules in your tests should be mocked automatically
