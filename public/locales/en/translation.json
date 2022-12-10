@@ -4,5 +4,6 @@
   "language": "Language",
   "pageNotFound": "Page not found",
   "ErrorMessage": "Ooops! Something went wrong",
-  "ImitateError": "Imitate Error"
+  "ImitateError": "Imitate Error",
+  "throwError": "throwError"
 }

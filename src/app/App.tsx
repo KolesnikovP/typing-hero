@@ -13,12 +13,6 @@ import { Theme, ThemeContext } from './providers/ThemeProvider/lib/ThemeContext'
 export const App: FC = () => {
   const { theme } = useTheme();
 
-  useEffect(() => {
-    if (Math.random() < 0.5) {
-      throw new Error();
-    }
-  }, []);
-
   return (
     <Suspense fallback='...loading'>
       <StoresProvider value={stores}>
