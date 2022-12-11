@@ -13,8 +13,17 @@ export const Sidebar = ({ className }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}>
-      <button type='button' onClick={() => setCollapsed((prevState) => !prevState)}>toggle</button>
+    <div
+      data-testid='sidebar'
+      className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
+    >
+      <button
+        data-testid='sidebar-toggle'
+        type='button'
+        onClick={() => setCollapsed((prevState) => !prevState)}
+      >
+        toggle
+      </button>
       <BugButton />
       <div className={cls.switchers}>
         <ToggleSwitch />
