@@ -3,6 +3,8 @@
  * https://jestjs.io/docs/configuration
  */
 
+import path from 'path';
+
 export default {
   // The root directory that Jest should scan for tests and modules within
   rootDir: '../../',
@@ -33,6 +35,7 @@ export default {
   // для моков стилей
   moduleNameMapper: {
     '\\.(s?css|less)$': 'identity-obj-proxy',
+    '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
   },
 
   // An array of file extensions your modules use
