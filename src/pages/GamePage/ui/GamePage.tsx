@@ -1,5 +1,7 @@
 import { Button, Form, Input } from 'antd';
-import React, { useCallback, useRef, useState } from 'react';
+import React, {
+  useRef, useState,
+} from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStores } from 'app/providers/hooks/storeHooks';
 import { checkIgnoreKeys } from 'shared/lib/Utils/checkIgnoreKeys';
@@ -24,6 +26,7 @@ export const GamePage: React.FC = observer(() => {
   const [currentKey, setCurrentKey] = useState<string>('');
   const [indexForCheck, setIndexForCheck] = useState<number>(0);
   const [isMistake, setIsMistake] = useState<boolean>(false);
+  const [isStop, setIsStop] = useState(false);
   const [mistakeCounter, setMistakeCounter] = useState(0);
   const refText = useRef<HTMLDivElement>(null);
 
@@ -47,26 +50,29 @@ export const GamePage: React.FC = observer(() => {
   };
 
   const keyChecker = (event: React.KeyboardEvent) => {
-    console.log(event, 'event');
     if (checkIgnoreKeys(event.key)) {
       return;
     }
-    // if (isStarted) {
     if (event.key === typingText[indexForCheck]) {
       setIndexForCheck((prevIndex) => prevIndex + 1);
       setCurrentKey(event.key);
       setIsMistake(false);
-    } else {
-      setMistakeCounter((prevState) => prevState + 1);
+      setIsStop(false);
+    }
+    if (event.key !== typingText[indexForCheck]) {
       setIsMistake(true);
     }
+    if (event.key !== typingText[indexForCheck] && !isStop) {
+      setMistakeCounter((prevState) => prevState + 1);
+      setIsStop(true);
+    }
   };
-  // }
+
   const { t } = useTranslation('gamepage');
+
   return (
     <div onKeyUp={keyChecker}>
       {typingText && isStarted && (
-        // eslint-disable-next-line max-len
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex,jsx-a11y/tabindex-no-positive
         <div className={classNames(cls.TypingArea)} tabIndex={1} ref={refText}>
           {typingText.map((letter, index) => (
