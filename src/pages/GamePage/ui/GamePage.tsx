@@ -47,7 +47,6 @@ export const GamePage: React.FC = observer(() => {
   };
 
   const keyChecker = (event: React.KeyboardEvent) => {
-    console.log(event, 'event');
     if (checkIgnoreKeys(event.key)) {
       return;
     }

@@ -1,5 +1,5 @@
-import React, {
-  useContext, useState, Suspense, FC, useEffect,
+import {
+  Suspense, FC,
 } from 'react';
 import { stores, StoresProvider } from 'app/providers/Store/stores';
 import './styles/index.scss';
