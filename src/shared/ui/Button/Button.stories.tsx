@@ -1,31 +1,27 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Button, ThemeButton } from './Button';
 
 export default { };
 interface ButtonProps {
   className?: string
   theme?: ThemeButton
-  // /**
-  //  * Is this the principal call to action on the page?
-  //  */
-  // primary?: boolean;
-  // /**
-  //  * What background color to use
-  //  */
-  // backgroundColor?: string;
-  // /**
-  //  * How large should the button be?
-  //  */
-  // size?: 'small' | 'medium' | 'large';
-  // /**
-  //  * Button contents
-  //  */
-  // label: string;
-  // /**
-  //  * Optional click handler
-  //  */
-  // onClick?: () => void;
 }
+
+const Template = (args: ButtonProps & {children: ReactNode}) => (
+  // 👇 Your template goes here
+  <Button {...args}>test</Button>
+);
+
+export const Primary = Template.bind({});
+Primary.args = {
+  variant: 'primary',
+};
+
+export const Clear = Template.bind({});
+Clear.args = {
+  variant: 'secondary',
+  theme: ThemeButton.CLEAR,
+};
 
 /**
  * Primary UI component for user interaction
