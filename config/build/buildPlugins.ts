@@ -3,6 +3,7 @@ import path from 'path';
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config.types';
 
 export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPluginInstance[] {
@@ -21,8 +22,10 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
   ];
 
   if (isDev) {
-    plugins.push(new ReactRefreshWebpackPlugin());
+    // ovarlay: false - убирает выводящую на страницу ошибку
+    plugins.push(new ReactRefreshWebpackPlugin({ overlay: false }));
     plugins.push(new webpack.HotModuleReplacementPlugin());
+    plugins.push(new BundleAnalyzerPlugin({ openAnalyzer: false }));
   }
 
   return plugins;

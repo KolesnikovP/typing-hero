@@ -24,6 +24,7 @@ export const GamePage: React.FC = observer(() => {
   const [currentKey, setCurrentKey] = useState<string>('');
   const [indexForCheck, setIndexForCheck] = useState<number>(0);
   const [isMistake, setIsMistake] = useState<boolean>(false);
+  const [mistakeCounter, setMistakeCounter] = useState(0);
   const refText = useRef<HTMLDivElement>(null);
 
   const onFinish = (values: { textFromInput: string | undefined }) => {
@@ -46,7 +47,6 @@ export const GamePage: React.FC = observer(() => {
   };
 
   const keyChecker = (event: React.KeyboardEvent) => {
-    console.log(event, 'event');
     if (checkIgnoreKeys(event.key)) {
       return;
     }
@@ -56,6 +56,7 @@ export const GamePage: React.FC = observer(() => {
       setCurrentKey(event.key);
       setIsMistake(false);
     } else {
+      setMistakeCounter((prevState) => prevState + 1);
       setIsMistake(true);
     }
   };
@@ -80,6 +81,14 @@ export const GamePage: React.FC = observer(() => {
           ))}
         </div>
       )}
+      <div>
+        statistic
+        <p>{typingText.length}</p>
+        <p>
+          mistakes:
+          {mistakeCounter}
+        </p>
+      </div>
       <button type='button' onClick={() => setIsStarted(true)}>Begin practice</button>
       {/* eslint-disable-next-line jsx-a11y/tabindex-no-positive */}
       <Form onFinish={onFinish} name='basic'>
