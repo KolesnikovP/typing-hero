@@ -7,6 +7,5 @@ export const mocTexts: Array<string> = [
 
 export const generateText = (): string => {
   const random = Math.floor(Math.random() * (mocTexts.length));
-  console.log(mocTexts[0]);
   return mocTexts[random];
 };
