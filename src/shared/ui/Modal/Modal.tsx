@@ -1,9 +1,7 @@
 import { Button, Modal as ModalAnt } from 'antd';
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useState } from 'react';
 import TextArea from 'antd/lib/input/TextArea';
 import { useTranslation } from 'react-i18next';
-import cls from './Modal.module.css';
 
 interface ModalProps {
   className?: string

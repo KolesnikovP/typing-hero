@@ -66,7 +66,6 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
 
   const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
     setCurrent(e.key);
     navigate(`${e.keyPath}`);
   };
