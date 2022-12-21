@@ -32,6 +32,7 @@ jobs:
       - name: linting code
         run: npm run lint
 
+        run-name: start unit testing
       - name: unit testing
         run: npm run test:unit
 
