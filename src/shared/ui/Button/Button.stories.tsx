@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
-import { Button, ThemeButton } from './Button';
+import { Button, ButtonTheme } from './Button';
 
 export default {
   title: 'shared/Button',
@@ -16,7 +16,7 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 interface ButtonProps {
   className?: string
-  theme?: ThemeButton
+  theme?: ButtonTheme
 }
 
 // const Template = (args: ButtonProps & {children: ReactNode}) => (
@@ -33,21 +33,21 @@ Primary.decorators = [ThemeDecorator(Theme.DARK)];
 export const Clear = Template.bind({});
 Clear.args = {
   children: 'Text',
-  theme: ThemeButton.CLEAR,
+  theme: ButtonTheme.CLEAR,
 };
 Clear.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const Outline = Template.bind({});
 Outline.args = {
   children: 'Text',
-  theme: ThemeButton.OUTLINE,
+  theme: ButtonTheme.OUTLINE,
 };
 Outline.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const OutlineLight = Template.bind({});
 OutlineLight.args = {
   children: 'Text',
-  theme: ThemeButton.OUTLINE,
+  theme: ButtonTheme.OUTLINE,
 };
 OutlineLight.decorators = [ThemeDecorator(Theme.LIGHT)];
 
@@ -56,13 +56,13 @@ OutlineLight.decorators = [ThemeDecorator(Theme.LIGHT)];
  */
 export const ButtonStories = ({
   className = 'button',
-  theme = ThemeButton.CLEAR,
+  theme = ButtonTheme.CLEAR,
   ...props
 }: ButtonProps) => (
   <Button
     type='button'
     className={['storybook-button', `storybook-button--${className}`].join(' ')}
-    theme={ThemeButton.CLEAR}
+    theme={ButtonTheme.CLEAR}
     // style={{ backgroundColor }}
     {...props}
   >

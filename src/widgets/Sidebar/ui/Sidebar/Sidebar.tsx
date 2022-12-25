@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ToggleSwitch } from 'widgets/ToggleSwitch';
 import { LangSwitcher } from 'widgets/LangSwitcher/LangSwitcher';
 import { BugButton } from 'app/providers/ErrorBoundary';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -23,7 +23,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
         type='button'
         onClick={() => setCollapsed((prevState) => !prevState)}
         className={cls.collapseBtn}
-        theme={ThemeButton.BACKGROUND_INVERTED}
+        theme={ButtonTheme.BACKGROUND_INVERTED}
         square
       >
         {collapsed ? '>' : '<'}
