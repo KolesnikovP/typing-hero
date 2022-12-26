@@ -1,9 +1,10 @@
 {
   "en": "English",
   "rus": "Russian",
-  "language": "Language",
+  "language": "English",
   "pageNotFound": "Page not found",
   "ErrorMessage": "Ooops! Something went wrong",
   "ImitateError": "Imitate Error",
-  "throwError": "throwError"
+  "throwError": "throwError",
+  "shortLanguage": "eng"
 }
