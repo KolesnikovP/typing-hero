@@ -34,7 +34,6 @@ jobs:
         run: npm run lint
         if: always()
 
-        run-name: start unit testing # имя запускаемое
       - name: unit testing
         run: npm run test:unit
         if: always() # если проверка выше упадет, это проверка запустится в любом случае
