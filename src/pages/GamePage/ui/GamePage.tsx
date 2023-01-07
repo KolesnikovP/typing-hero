@@ -3,7 +3,6 @@ import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
 import { observer } from 'mobx-react-lite';
-import { useStores } from 'app/providers/hooks/storeHooks';
 import { checkIgnoreKeys } from 'shared/lib/Utils/checkIgnoreKeys';
 import { generateText, mocTexts } from 'shared/assets/mocs/moc';
 import { Modal } from 'shared/ui/Modal/Modal';
@@ -17,8 +16,6 @@ import CustomSpan from './CustomSpan/CustomSpan';
 const { TextArea } = Input;
 
 export const GamePage: React.FC = observer(() => {
-  const { typingStore } = useStores();
-
   const [typingText, setTypingText] = useState<Array<string|number>>(
     generateText().split(''),
   );
