@@ -1,7 +1,8 @@
 import { Button, Form, Input } from 'antd';
-import React, { useCallback, useRef, useState } from 'react';
+import React, {
+  useCallback, useEffect, useRef, useState,
+} from 'react';
 import { observer } from 'mobx-react-lite';
-import { useStores } from 'app/providers/hooks/storeHooks';
 import { checkIgnoreKeys } from 'shared/lib/Utils/checkIgnoreKeys';
 import { generateText, mocTexts } from 'shared/assets/mocs/moc';
 import { Modal } from 'shared/ui/Modal/Modal';
@@ -15,8 +16,6 @@ import CustomSpan from './CustomSpan/CustomSpan';
 const { TextArea } = Input;
 
 export const GamePage: React.FC = observer(() => {
-  const { typingStore } = useStores();
-
   const [typingText, setTypingText] = useState<Array<string|number>>(
     generateText().split(''),
   );
@@ -44,6 +43,7 @@ export const GamePage: React.FC = observer(() => {
     // и новый стейт из модалки
     const arrayForTyping = value.split('');
     setTypingText(arrayForTyping);
+    refText.current.focus();
   };
 
   const keyChecker = (event: React.KeyboardEvent) => {
@@ -56,11 +56,16 @@ export const GamePage: React.FC = observer(() => {
       setCurrentKey(event.key);
       setIsMistake(false);
     } else {
-      setMistakeCounter((prevState) => prevState + 1);
       setIsMistake(true);
     }
   };
-  // }
+
+  useEffect(() => {
+    if (isMistake) {
+      setMistakeCounter((prevState) => prevState + 1);
+    }
+  }, [isMistake]);
+
   const { t } = useTranslation('gamepage');
   return (
     <div onKeyUp={keyChecker}>
@@ -93,7 +98,7 @@ export const GamePage: React.FC = observer(() => {
       {/* eslint-disable-next-line jsx-a11y/tabindex-no-positive */}
       <Form onFinish={onFinish} name='basic'>
         <Form.Item name='textFromInput'>
-          <TextArea maxLength={600} style={{ height: 120, width: 600 }} placeholder={typingText.join('')} />
+          <TextArea maxLength={600} style={{ height: 120, width: 600 }} defaultValue={typingText.join('')} />
         </Form.Item>
         <Form.Item>
           <Button type='primary' htmlType='submit'>

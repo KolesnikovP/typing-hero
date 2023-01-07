@@ -1,7 +1,6 @@
 import {
   Suspense, FC,
 } from 'react';
-import { stores, StoresProvider } from 'app/providers/Store/stores';
 import './styles/index.scss';
 import { AppRouter } from 'app/router';
 
@@ -15,16 +14,14 @@ export const App: FC = () => {
 
   return (
     <Suspense fallback='...loading'>
-      <StoresProvider value={stores}>
-        <div className={`app ${theme}`}>
-          <Header />
-          <div className='content-page'>
-            <Sidebar />
-            <AppRouter />
-          </div>
-          {/* <div className={`app ${theme}`}>{<GamePage />}</div> */}
+      <div className={`app ${theme}`}>
+        <Header />
+        <div className='content-page'>
+          <Sidebar />
+          <AppRouter />
         </div>
-      </StoresProvider>
+        {/* <div className={`app ${theme}`}>{<GamePage />}</div> */}
+      </div>
     </Suspense>
   );
 };
