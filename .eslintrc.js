@@ -8,21 +8,21 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint', 'react-hooks'],
   rules: {
     'react/jsx-indent': [0, {
       indentMode: 2,
-      ignoreTernaryOperator: true
+      ignoreTernaryOperator: true,
     }],
     indent: [2, 2],
     'no-unused-vars': 'warn',
     'react/jsx-filename-extension': [1, {
-      extensions: ['.js', '.jsx', 'tsx', 'ts']
+      extensions: ['.js', '.jsx', 'tsx', 'ts'],
     }],
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
@@ -36,24 +36,23 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'import/no-extraneous-dependencies': 'off',
     'jsx-a11y/no-static-element-interactions': 'warn',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interaction': 'off',
+    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+    'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
     'max-len': ['warn', {
-      code: 140
-    }]
-    // 'i18next/no-literal-string': ['error', {
-    //   markupOnly: true,
-    //   ignoreAttribute: ['data-testid', 'to'],
-    // }],
-    // 'i18next/no-literal-string': 'error',
+      code: 140,
+    }],
   },
 
   globals: {
-    __IS_DEV__: true
+    __IS_DEV__: true,
   },
   // позволяет переопределять правила для каких то файлов
   overrides: [{
     files: ['**/src/**/*.test.{ts,tsx}'],
     rules: {
-      'i18next/no-literal-string': 'off'
-    }
-  }]
+      'i18next/no-literal-string': 'off',
+    },
+  }],
 };
