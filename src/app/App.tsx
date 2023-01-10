@@ -1,7 +1,6 @@
 import {
   Suspense, FC,
 } from 'react';
-import './styles/index.scss';
 import { AppRouter } from 'app/router';
 
 import { Header } from 'widgets/Header';
