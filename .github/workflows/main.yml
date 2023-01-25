@@ -28,12 +28,16 @@ jobs:
 
       - name: build production project
         run: npm run build:prod
+        if: always()
 
       - name: linting code
         run: npm run lint
+        if: always()
 
       - name: unit testing
         run: npm run test:unit
+        if: always() # если проверка выше упадет, это проверка запустится в любом случае
 
       - name: storybook testing
         run: npm run storybook:build
+        if: always()

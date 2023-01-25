@@ -1,8 +1,10 @@
 {
   "en": "Английский",
   "rus": "Русский",
-  "language": "Язык",
+  "language": "Русский",
+  "shortLanguage": "рус",
   "pageNotFound": "Страница не найдена",
   "ErrorMessage": "Упсс! Что-то пошло не так",
-  "ImitateError": "Имитация ошибки"
+  "ImitateError": "Имитация ошибки",
+  "login": "Войти"
 }
