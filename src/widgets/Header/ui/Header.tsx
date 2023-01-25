@@ -1,76 +1,35 @@
-import {
-  AppstoreOutlined, HomeOutlined, ProfileOutlined, UserOutlined,
-} from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Menu } from 'antd';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from './style.module.css';
+import { UserOutlined } from '@ant-design/icons';
+import React, { useCallback, useState } from 'react';
+import { Modal } from 'shared/ui/Modal/Modal';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { useTranslation } from 'react-i18next';
+import styles from './Header.module.scss';
 
-const items: MenuProps['items'] = [
+const items = [
   {
-    label: 'Главная',
-    key: '/main',
-    icon: <HomeOutlined />,
-  },
-  {
-    label: 'Режим',
-    key: 'app',
-    icon: <AppstoreOutlined />,
-    disabled: true,
-  },
-  {
-    label: 'Результаты',
-    key: '/results',
-    icon: <ProfileOutlined />,
-    children: [
-      {
-        type: 'group',
-        label: 'Item 1',
-        children: [
-          {
-            label: 'Option 1',
-            key: 'setting:1',
-          },
-          {
-            label: 'Option 2',
-            key: 'setting:2',
-          },
-        ],
-      },
-      {
-        type: 'group',
-        label: 'Item 2',
-        children: [
-          {
-            label: 'Option 3',
-            key: 'setting:3',
-          },
-          {
-            label: 'Option 4',
-            key: 'setting:4',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: 'Профиль',
-    key: '/profile',
+    label: 'Войти',
+    key: 'login',
     icon: <UserOutlined />,
   },
 ];
 
 const Header: React.FC = () => {
-  const [current, setCurrent] = useState('mail');
-  const navigate = useNavigate();
+  const [isAuthModal, setIsAuthModal] = useState(false);
+  const { t } = useTranslation();
 
-  const onClick: MenuProps['onClick'] = (e) => {
-    setCurrent(e.key);
-    navigate(`${e.keyPath}`);
-  };
+  const onToggleModal = useCallback(() => {
+    setIsAuthModal((prevState) => !prevState);
+  }, []);
 
-  return <Menu className={styles.Header} onClick={onClick} selectedKeys={[current]} mode='horizontal' items={items} />;
+  return (
+    <div className={styles.Header}>
+      <Button type='button' theme={ButtonTheme.CLEAR_INVERTED} onClick={onToggleModal}>{t('login')}</Button>
+      <Modal isOpen={isAuthModal} onClose={() => setIsAuthModal(false)}>
+        some text
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, minus?
+      </Modal>
+    </div>
+  );
 };
 
 export default Header;

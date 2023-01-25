@@ -6,5 +6,6 @@
   "ErrorMessage": "Ooops! Something went wrong",
   "ImitateError": "Imitate Error",
   "throwError": "throwError",
-  "shortLanguage": "eng"
+  "shortLanguage": "eng",
+  "login": "login"
 }
