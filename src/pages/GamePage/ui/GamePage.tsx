@@ -5,17 +5,17 @@ import React, {
 import { observer } from 'mobx-react-lite';
 import { checkIgnoreKeys } from 'shared/lib/Utils/checkIgnoreKeys';
 import { generateText, mocTexts } from 'shared/assets/mocs/moc';
-import { Modal } from 'shared/ui/Modal/Modal';
-import { values } from 'mobx';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { Modal } from 'shared/ui/Modal/Modal';
+import { set } from 'mobx';
 import cls from './GamePage.module.scss';
 import CustomSpan from './CustomSpan/CustomSpan';
-// import { useStores } from '../../hooks/storeHooks'
 
 const { TextArea } = Input;
 
 export const GamePage: React.FC = observer(() => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [typingText, setTypingText] = useState<Array<string|number>>(
     generateText().split(''),
   );
@@ -50,7 +50,6 @@ export const GamePage: React.FC = observer(() => {
     if (checkIgnoreKeys(event.key)) {
       return;
     }
-    // if (isStarted) {
     if (event.key === typingText[indexForCheck]) {
       setIndexForCheck((prevIndex) => prevIndex + 1);
       setCurrentKey(event.key);
@@ -105,8 +104,12 @@ export const GamePage: React.FC = observer(() => {
             {t('customText')}
           </Button>
         </Form.Item>
+        <button type='button' onClick={() => setIsOpen(true)}>modal</button>
+        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+          some text
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, minus?
+        </Modal>
       </Form>
-      <Modal modalHandler={modalHandler} />
     </div>
   );
 });

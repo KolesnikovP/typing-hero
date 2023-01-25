@@ -1,8 +1,9 @@
 .Header {
+  padding: 0 var(--padding-xl);
   width: 100%;
   height: var(--header-height);
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   background: var(--inverted-bg-color);
   color: var(--secondary-font-color)
 }
