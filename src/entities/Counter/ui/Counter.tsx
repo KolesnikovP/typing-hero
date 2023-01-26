@@ -8,19 +8,19 @@ export const Counter = () => {
   const dispatch = useDispatch();
   const counterValue = useSelector(getCounterValue);
 
-  const increment = () => {
+  const handleIncrement = () => {
     dispatch(counterActions.increment());
   };
 
-  const decrement = () => {
+  const handleDecrement = () => {
     dispatch(counterActions.decrement());
   };
 
   return (
-    <div>
-      <h1>{counterValue}</h1>
-      <Button onClick={increment}>increment</Button>
-      <Button onClick={decrement}>decrement</Button>
-    </div>
+    <>
+      <div>{counterValue}</div>
+      <Button onClick={handleIncrement}>Increment</Button>
+      <Button onClick={handleDecrement}>Decrement</Button>
+    </>
   );
 };
