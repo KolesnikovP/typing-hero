@@ -6,7 +6,6 @@ import { AppRouter } from 'app/router';
 import { Header } from 'widgets/Header';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { Sidebar } from 'widgets/Sidebar';
-import { Theme, ThemeContext } from './providers/ThemeProvider/lib/ThemeContext';
 
 export const App: FC = () => {
   const { theme } = useTheme();
