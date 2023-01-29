@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
+import { LoginModal } from 'features/AuthByUserName';
 import styles from './Header.module.scss';
 
 const items = [
@@ -17,17 +18,18 @@ const Header: React.FC = () => {
   const [isAuthModal, setIsAuthModal] = useState(false);
   const { t } = useTranslation();
 
-  const onToggleModal = useCallback(() => {
-    setIsAuthModal((prevState) => !prevState);
+  const onCloseModal = useCallback(() => {
+    setIsAuthModal(false);
+  }, []);
+
+  const onOpenModal = useCallback(() => {
+    setIsAuthModal(true);
   }, []);
 
   return (
     <div className={styles.Header}>
-      <Button type='button' theme={ButtonTheme.CLEAR_INVERTED} onClick={onToggleModal}>{t('login')}</Button>
-      <Modal isOpen={isAuthModal} onClose={() => setIsAuthModal(false)}>
-        some text
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, minus?
-      </Modal>
+      <Button type='button' theme={ButtonTheme.CLEAR_INVERTED} onClick={onOpenModal}>{t('login')}</Button>
+      <LoginModal isOpen={isAuthModal} onClose={() => setIsAuthModal(false)} />
     </div>
   );
 };

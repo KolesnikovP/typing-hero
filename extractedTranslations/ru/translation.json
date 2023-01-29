@@ -6,5 +6,6 @@
   "language": "language",
   "login": "login",
   "openModal": "openModal",
-  "pageNotFound": "pageNotFound"
+  "pageNotFound": "pageNotFound",
+  "Войти": "Войти"
 }

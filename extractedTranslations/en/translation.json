@@ -7,5 +7,6 @@
   "login": "login",
   "openModal": "openModal",
   "pageNotFound": "Page not found",
-  "throwError": ""
+  "throwError": "",
+  "Войти": "Войти"
 }
