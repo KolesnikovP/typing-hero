@@ -1,5 +1,5 @@
 import {
-  Suspense, FC,
+  Suspense, FC, useEffect,
 } from 'react';
 import { AppRouter } from 'app/router';
 
@@ -10,9 +10,13 @@ import { Sidebar } from 'widgets/Sidebar';
 export const App: FC = () => {
   const { theme } = useTheme();
 
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
   return (
     <Suspense fallback='...loading'>
-      <div className={`app ${theme}`}>
+      <div className='app'>
         <Header />
         <div className='content-page'>
           <Sidebar />
