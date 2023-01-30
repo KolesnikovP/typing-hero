@@ -33,10 +33,9 @@
 }
 
 .items {
-  margin-top: 20px;
+  margin: 20px 15px 0 15px;
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
 }
 
 .link {
@@ -51,6 +50,7 @@
 }
 
 .item {
+  width: var(--sidebar-items-width);
   margin-top: 10px;
   display: flex;
   align-items: center;
@@ -59,9 +59,14 @@
 .collapsed {
   width: var(--sidebar-width-collapsed);
 
+  .items {
+    //margin: 20px 15px 0 15px;
+    display: flex;
+    flex-direction: column;
+  }
+
   .switchers {
     flex-direction: column;
-    //align-items: center;
     margin-left: 20px;
   }
 
@@ -73,6 +78,7 @@
     opacity: 0;
     transition: 0.2s opacity;
     width: 0;
+    display: none;
   }
 }
 
