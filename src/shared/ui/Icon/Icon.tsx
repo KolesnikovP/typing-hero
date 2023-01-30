@@ -11,12 +11,11 @@ interface IconProps extends SVGProps<SVGSVGElement> {
   size?: number
 }
 
-export const Icon = (props: IconProps): JSX.Element => {
+export const Icon = (props: IconProps) => {
   const { type, size = 20 } = props;
 
   return (
-    <>
-      {type === IconType.themeIcon && <ThemeIcon fontSize={size} />}
-    </>
+  // {type === IconType.themeIcon && <ThemeIcon fontSize={size} />}
+    <span>do it</span>
   );
 };

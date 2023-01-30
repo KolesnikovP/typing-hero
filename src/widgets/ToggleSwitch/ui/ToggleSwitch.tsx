@@ -34,8 +34,8 @@ export const ToggleSwitch = (props: ToggleSwitchProps) => {
   return (
     !short
       ? (
-        <label className={classNames(cls.ToggleSwitch, {}, [className])}>
-          <input type='checkbox' onChange={handlerOnChange} defaultChecked={isChecked} />
+        <label htmlFor='inputCheckbox' className={classNames(cls.ToggleSwitch, {}, [className])}>
+          <input id='inputCheckbox' type='checkbox' onChange={handlerOnChange} defaultChecked={isChecked} />
           <span className={cls.Slider} />
           <span
             className={
