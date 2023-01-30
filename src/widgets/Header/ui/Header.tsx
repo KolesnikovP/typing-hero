@@ -28,6 +28,7 @@ const Header: React.FC = () => {
 
   return (
     <div className={styles.Header}>
+      <span>Some Logo T-Hero</span>
       <Button type='button' theme={ButtonTheme.CLEAR_INVERTED} onClick={onOpenModal}>{t('login')}</Button>
       <LoginModal isOpen={isAuthModal} onClose={() => setIsAuthModal(false)} />
     </div>
