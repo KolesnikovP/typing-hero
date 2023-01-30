@@ -1,9 +1,22 @@
 .AppLink {
-  color: var(--primary-color);
+  color: var(--primary-font-color);
+}
+
+.AppLink.HoverTheme {
+    //display: inline-block;
+    display: flex;
+    align-items: center;
+    color: var(--primary-font-color);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding: 6px 6px 6px 8px;
+    &:hover {
+      background: var(--secondary-color);
+    }
 }
 
 .primary {
-  color: var(--primary-color);
+  color: var(--primary-font-color);
 }
 
 .secondary {

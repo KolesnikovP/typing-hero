@@ -4,11 +4,12 @@ import { ToggleSwitch } from 'widgets/ToggleSwitch';
 import { LangSwitcher } from 'widgets/LangSwitcher/LangSwitcher';
 import { BugButton } from 'app/providers/ErrorBoundary';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import HomeIcon from 'shared/assets/icons/HomeIcon.svg';
 import ProfileIcon from 'shared/assets/icons/profileIcon.svg';
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai';
+import { FaUserNinja } from 'react-icons/fa';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -27,6 +28,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
         <AppLink
           className={cls.item}
           to={RoutePath.main}
+          theme={AppLinkTheme.HOVER}
         >
           <HomeIcon className={cls.icon} />
           <span className={cls.link}>
@@ -36,8 +38,9 @@ export const Sidebar = ({ className }: SidebarProps) => {
         <AppLink
           className={cls.item}
           to={RoutePath.profile}
+          theme={AppLinkTheme.HOVER}
         >
-          <ProfileIcon className={cls.icon} />
+          <FaUserNinja size={18} className={cls.icon} />
           <span className={cls.link}>
               Профиль
           </span>
@@ -45,10 +48,11 @@ export const Sidebar = ({ className }: SidebarProps) => {
         <AppLink
           className={cls.item}
           to={RoutePath.about}
+          theme={AppLinkTheme.HOVER}
         >
           <ProfileIcon className={cls.icon} />
           <span className={cls.link}>
-          О проекте
+            О проекте
           </span>
         </AppLink>
       </div>

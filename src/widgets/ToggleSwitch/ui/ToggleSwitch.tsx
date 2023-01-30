@@ -6,10 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { ThemeMode } from './ThemeMode/ThemeMode';
 import cls from './style.module.scss';
 
-interface IToggleProps {
-  className?: string
-}
-
 interface ToggleSwitchProps {
   className?: string;
   short: boolean;
@@ -46,7 +42,7 @@ export const ToggleSwitch = (props: ToggleSwitchProps) => {
               )
             }
           >
-            {isChecked ? <ThemeMode mode='light' /> : <ThemeMode mode='dark' />}
+            {isChecked ? <ThemeMode mode='dark' /> : <ThemeMode mode='light' />}
           </span>
         </label>
       )
