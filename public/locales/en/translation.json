@@ -8,5 +8,10 @@
   "throwError": "throwError",
   "shortLanguage": "eng",
   "login": "login",
-  "Войти": "Login"
+  "Войти": "Login",
+  "Главная": "Main",
+  "Профиль": "Profile",
+  "О проекте": "About",
+  "Активность": "Активность",
+  "Статьи": "Статьи"
 }
