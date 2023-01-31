@@ -10,6 +10,9 @@ import HomeIcon from 'shared/assets/icons/HomeIcon.svg';
 import ProfileIcon from 'shared/assets/icons/profileIcon.svg';
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai';
 import { FaUserNinja } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
+import { FiActivity } from 'react-icons/fi';
+import { BsExclamationSquare } from 'react-icons/bs';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -18,6 +21,7 @@ interface SidebarProps {
 
 export const Sidebar = ({ className }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <div
@@ -32,7 +36,27 @@ export const Sidebar = ({ className }: SidebarProps) => {
         >
           <HomeIcon className={cls.icon} />
           <span className={cls.link}>
-            Главная
+            {t('Главная')}
+          </span>
+        </AppLink>
+        <AppLink
+          className={cls.item}
+          to={RoutePath.profile}
+          theme={AppLinkTheme.HOVER}
+        >
+          <FiActivity size={18} className={cls.icon} />
+          <span className={cls.link}>
+            {t('Активность')}
+          </span>
+        </AppLink>
+        <AppLink
+          className={cls.item}
+          to={RoutePath.profile}
+          theme={AppLinkTheme.HOVER}
+        >
+          <ProfileIcon className={cls.icon} />
+          <span className={cls.link}>
+            {t('Статьи')}
           </span>
         </AppLink>
         <AppLink
@@ -42,7 +66,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
         >
           <FaUserNinja size={18} className={cls.icon} />
           <span className={cls.link}>
-              Профиль
+            {t('Профиль')}
           </span>
         </AppLink>
         <AppLink
@@ -50,9 +74,9 @@ export const Sidebar = ({ className }: SidebarProps) => {
           to={RoutePath.about}
           theme={AppLinkTheme.HOVER}
         >
-          <ProfileIcon className={cls.icon} />
+          <BsExclamationSquare size={18} className={cls.icon} />
           <span className={cls.link}>
-            О проекте
+            {t('О проекте')}
           </span>
         </AppLink>
       </div>
