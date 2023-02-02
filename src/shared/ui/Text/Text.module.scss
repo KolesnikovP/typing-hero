@@ -1,0 +1,31 @@
+.Title {
+  font: var(--font-l);
+  // FixMe: antd overrides this margin. It's bad.
+  margin-bottom: 0;
+  color: var(--primary-font-color);
+}
+
+.Text {
+    font: var(--font-m);
+    margin-bottom: 0;
+    color: var(--primary-font-color);
+}
+
+.secondary {
+  .Title {
+    color: var(--inverted-primary-font-color);
+  }
+
+  .Text {
+    color: var(--inverted-primary-font-color);
+  }
+}
+
+.error {
+  .Title {
+    color: var(--red-color-light);
+  }
+  .Text {
+    color: var(--red-color);
+  }
+}
