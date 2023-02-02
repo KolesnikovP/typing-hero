@@ -6,9 +6,16 @@ import { AppRouter } from 'app/router';
 import { Header } from 'widgets/Header';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { Sidebar } from 'widgets/Sidebar';
+import { useDispatch } from 'react-redux';
+import { userActions } from 'entities/User';
 
 export const App: FC = () => {
   const { theme } = useTheme();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(userActions.initAuthData());
+  }, [dispatch]);
 
   useEffect(() => {
     document.body.className = theme;

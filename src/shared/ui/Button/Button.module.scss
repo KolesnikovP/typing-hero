@@ -1,7 +1,12 @@
 .Button {
   cursor: pointer;
-  color: var(--inverted-primary-font-color);
+  color: var(--primary-font-color);
+  background-color: var(--primary-color);
   padding: 6px 15px;
+}
+
+.disabled{
+  opacity: 0.5;
 }
 
 .clear,

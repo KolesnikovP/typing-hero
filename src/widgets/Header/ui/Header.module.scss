@@ -8,3 +8,11 @@
   background: var(--primary-color);
   color: var(--inverted-primary-color);
 }
+
+.LogoWrapper {
+    display: flex;
+    align-items: center;
+  :first-child {
+    margin-right: var(--padding-m);
+  }
+}

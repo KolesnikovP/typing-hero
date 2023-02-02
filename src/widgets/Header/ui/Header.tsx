@@ -3,7 +3,10 @@ import React, { useCallback, useState } from 'react';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
-import { LoginModal } from 'features/AuthByUserName';
+import { LoginModal } from 'features/AuthByUsername';
+import { FaRegKeyboard } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserAuthData, userActions } from 'entities/User';
 import styles from './Header.module.scss';
 
 const items = [
@@ -15,8 +18,10 @@ const items = [
 ];
 
 const Header: React.FC = () => {
-  const [isAuthModal, setIsAuthModal] = useState(false);
   const { t } = useTranslation();
+  const [isAuthModal, setIsAuthModal] = useState(false);
+  const userAuthData = useSelector(getUserAuthData);
+  const dispatch = useDispatch();
 
   const onCloseModal = useCallback(() => {
     setIsAuthModal(false);
@@ -26,11 +31,24 @@ const Header: React.FC = () => {
     setIsAuthModal(true);
   }, []);
 
+  const onLogout = useCallback(() => {
+    dispatch(userActions.logout());
+  }, [dispatch]);
+
   return (
     <div className={styles.Header}>
-      <span>Some Logo T-Hero</span>
-      <Button type='button' theme={ButtonTheme.CLEAR_INVERTED} onClick={onOpenModal}>{t('login')}</Button>
-      <LoginModal isOpen={isAuthModal} onClose={() => setIsAuthModal(false)} />
+      <span className={styles.LogoWrapper}>
+        <FaRegKeyboard size={22} />
+        <span>T-Hero</span>
+      </span>
+      {userAuthData
+        ? (
+          <Button type='button' theme={ButtonTheme.CLEAR_INVERTED} onClick={onLogout}>{t('Выйти')}</Button>
+        )
+        : (
+          <Button type='button' theme={ButtonTheme.CLEAR_INVERTED} onClick={onOpenModal}>{t('Войти')}</Button>
+        )}
+      <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
     </div>
   );
 };

@@ -9,9 +9,12 @@
   "shortLanguage": "eng",
   "login": "login",
   "Войти": "Login",
+  "Выйти": "Logout",
   "Главная": "Main",
   "Профиль": "Profile",
   "О проекте": "About",
-  "Активность": "Активность",
-  "Статьи": "Статьи"
+  "Активность": "Activity",
+  "Статьи": "Articles",
+  "formAuthTitle": "Authorization form",
+  "Введен неверный логин или пароль": "Invalid username or password"
 }
