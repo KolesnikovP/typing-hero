@@ -2,19 +2,17 @@ import { Button, Form, Input } from 'antd';
 import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
-import { observer } from 'mobx-react-lite';
 import { checkIgnoreKeys } from 'shared/lib/Utils/checkIgnoreKeys';
 import { generateText, mocTexts } from 'shared/assets/mocs/moc';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Modal } from 'shared/ui/Modal/Modal';
-import { set } from 'mobx';
 import cls from './GamePage.module.scss';
 import CustomSpan from './CustomSpan/CustomSpan';
 
 const { TextArea } = Input;
 
-export const GamePage: React.FC = observer(() => {
+export const GamePage: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [typingText, setTypingText] = useState<Array<string|number>>(
     generateText().split(''),
@@ -112,4 +110,4 @@ export const GamePage: React.FC = observer(() => {
       </Form>
     </div>
   );
-});
+};
