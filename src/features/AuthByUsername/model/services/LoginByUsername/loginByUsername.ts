@@ -11,7 +11,7 @@ import { USER_LOCAL_STORAGE_KEY } from 'shared/Constants/localStorage';
  а вторым - тип данных, которые мы ожидаем получить в качестве аргумента в функции, которая выполняется при вызове экшена.
 */
 
-interface LoginByUsernamePayload {
+export interface LoginByUsernamePayload {
   username: string;
   password: string;
 }
