@@ -11,7 +11,7 @@ import {
   DynamicModuleLoader,
   ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { loginByUsername } from '../../model/services/loginByUsername';
+import { loginByUsername } from '../../model/services/LoginByUsername/loginByUsername';
 import { loginReducer } from '../../model/slice/loginSlice';
 import {
   getLoginUsername,
