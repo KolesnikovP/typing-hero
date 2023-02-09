@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getMsToTimeValues } from 'shared/lib/Utils/getMsToTimeValues';
 import { convertMinuteToSecond } from 'shared/lib/Utils/convertSecondToTimesValues';
 
-const useCountdown = (targetDate: number) => {
+export const useCountdown = (targetDate: number) => {
   const initialState = convertMinuteToSecond(targetDate);
   const [countDown, setCountDown] = useState(initialState || 60);
 
@@ -19,8 +19,6 @@ const useCountdown = (targetDate: number) => {
 
   return [countDown, countDown, countDown, countDown];
 };
-
-export { useCountdown };
 
 // prev version
 //

@@ -1,4 +1,4 @@
-import { useCountdown } from '../hooks/useCountdown';
+import { useCountdown } from '../hooks/useCountDown';
 import cls from './Timer.module.scss';
 
 const DateTimeDisplay = ({ value, type, isDanger }: {value: number, type: string, isDanger: boolean}) => (
