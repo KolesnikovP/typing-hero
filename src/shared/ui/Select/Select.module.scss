@@ -1,8 +1,6 @@
-.InputWrapper {
-
-}
-
-.Input {
+.Select {
+  padding: var(--padding-m);
   background: var(--bg-color);
   color: var(--primary-font-color);
+  outline: none;
 }
