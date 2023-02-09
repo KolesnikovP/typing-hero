@@ -1,6 +1,7 @@
 import { CounterSchema } from 'entities/Counter';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUsername';
+import { GameSessionSchema } from 'features/GameSession';
 import {
   AnyAction,
   CombinedState,
@@ -12,6 +13,7 @@ import {
 export interface StateSchema {
   counter: CounterSchema
   user: UserSchema
+  gameSession: GameSessionSchema
   // Асинхронные редьюсеры
   loginForm?: LoginSchema
 }
