@@ -44,6 +44,7 @@ module.exports = {
     'max-len': ['warn', {
       code: 140,
     }],
+    'react/button-has-type': 'off',
   },
 
   globals: {
