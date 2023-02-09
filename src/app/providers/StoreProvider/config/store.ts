@@ -2,6 +2,7 @@ import { configureStore, DeepPartial, ReducersMapObject } from '@reduxjs/toolkit
 import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 import { createReducerManager } from 'app/providers/StoreProvider/config/reducerManager';
+import { gameSessionReducer } from 'features/GameSession/model/slice/gameSessionSlice';
 import { StateSchema } from './StateSchema';
 
 // мы обернули configureStore в нашу функцию чтоб потом использовать в сторибуке
@@ -10,6 +11,7 @@ export function createReduxStore(initialState?: StateSchema, asyncReducers?: Red
     ...asyncReducers,
     counter: counterReducer,
     user: userReducer,
+    gameSession: gameSessionReducer,
   };
 
   const reducerManager = createReducerManager(rootReducer);
