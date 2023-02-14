@@ -8,7 +8,16 @@
     { "id": "1", "body": "some comment", "postId": "1" }
   ],
   "users": [
-    { "id": "1", "username": "petr", "password": "123" }
+    { "id": "1", "username": "admin", "password": "123" }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "firstname": "Petr",
+    "lastname": "Kolesnikov",
+    "age": 29,
+    "currency": "RUB",
+    "country": "Russia",
+    "city": "St.Petersburg",
+    "username": "admin",
+    "avatar": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0a0a9822-9ece-4172-b70d-cf5bd3e2f304/de52843-e0a6aeae-fba2-4519-9840-61a9252b3a3f.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzBhMGE5ODIyLTllY2UtNDE3Mi1iNzBkLWNmNWJkM2UyZjMwNFwvZGU1Mjg0My1lMGE2YWVhZS1mYmEyLTQ1MTktOTg0MC02MWE5MjUyYjNhM2YuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.vN6C2rNHN-7QMrfbJGIfSDEwIiAinDJDjiHZwUFk6lg"
+  }
 }

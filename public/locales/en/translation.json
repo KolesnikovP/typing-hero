@@ -16,5 +16,6 @@
   "Активность": "Activity",
   "Статьи": "Articles",
   "formAuthTitle": "Authorization form",
-  "Введен неверный логин или пароль": "Invalid username or password"
+  "Введен неверный логин или пароль": "Invalid username or password",
+  "Profile Page": "Profile page"
 }

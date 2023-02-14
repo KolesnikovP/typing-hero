@@ -38,24 +38,6 @@
   flex-direction: column;
 }
 
-.link {
-  margin-left: 10px;
-  opacity: 1;
-  white-space: nowrap;
-  margin-right: 15px;
-}
-
-.icon {
-  fill: var(--primary-font-color)
-}
-
-.item {
-  width: var(--sidebar-items-width);
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-}
-
 .collapsed {
   width: var(--sidebar-width-collapsed);
 
