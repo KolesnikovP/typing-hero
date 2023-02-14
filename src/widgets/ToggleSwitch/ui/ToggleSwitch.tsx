@@ -1,4 +1,6 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, {
+  ChangeEvent, FC, memo, useState,
+} from 'react';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -11,7 +13,7 @@ interface ToggleSwitchProps {
   short: boolean;
 }
 
-export const ToggleSwitch = (props: ToggleSwitchProps) => {
+export const ToggleSwitch = memo((props: ToggleSwitchProps) => {
   const { className, short } = props;
   const { t } = useTranslation();
   const { theme, toggleTheme } = useTheme();
@@ -59,4 +61,4 @@ export const ToggleSwitch = (props: ToggleSwitchProps) => {
         </Button>
       )
   );
-};
+});

@@ -2,17 +2,20 @@ import { ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import HomeIconSVG from '../../assets/icons/HomeIcon.svg';
 import LightIconSVG from '../../assets/icons/Light.svg';
+import UserIconSVG from '../../assets/icons/userIcon.svg';
 
 import styles from './Icon.module.scss';
 
 export enum IconName {
   HOME_ICON = 'homeIcon',
-  LIGHT_ICON = 'lightIcon'
+  LIGHT_ICON = 'lightIcon',
+  USER_ICON = 'userIcon',
 }
 
 const icons: Record<IconName, ReactNode> = {
   homeIcon: <HomeIconSVG />,
   lightIcon: <LightIconSVG />,
+  [IconName.USER_ICON]: <UserIconSVG />,
 };
 
 type IconProps = {

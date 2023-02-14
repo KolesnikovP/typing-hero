@@ -1,6 +1,5 @@
 import { UserOutlined } from '@ant-design/icons';
-import React, { useCallback, useState } from 'react';
-import { Modal } from 'shared/ui/Modal/Modal';
+import React, { memo, useCallback, useState } from 'react';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { LoginModal } from 'features/AuthByUsername';
@@ -17,7 +16,7 @@ const items = [
   },
 ];
 
-const Header: React.FC = () => {
+const Header: React.FC = memo(() => {
   const { t } = useTranslation();
   const [isAuthModal, setIsAuthModal] = useState(false);
   const userAuthData = useSelector(getUserAuthData);
@@ -51,6 +50,6 @@ const Header: React.FC = () => {
       {isAuthModal && <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />}
     </div>
   );
-};
+});
 
 export default Header;
