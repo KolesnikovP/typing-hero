@@ -49,6 +49,7 @@ module.exports = {
 
   globals: {
     __IS_DEV__: true,
+    __API__: true,
   },
   // позволяет переопределять правила для каких то файлов
   overrides: [{
