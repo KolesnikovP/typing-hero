@@ -12,7 +12,7 @@ type HTMLSelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'onSelect'>
 interface SelectProps extends HTMLSelectProps{
   className?: string
   label?: string
-  options?: OptionsType[]
+  options: OptionsType[]
   onSelect?: (value: string | number) => void
 }
 

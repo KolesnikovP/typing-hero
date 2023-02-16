@@ -39,6 +39,17 @@ server.post('/login', (req, res) => {
   }
 });
 
+server.get('/profile', (req, res) => {
+  try {
+    const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+    const { profile = {} } = db;
+    return res.json(profile);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: e.message });
+  }
+});
+
 // проверяем, авторизован ли пользователь
 // eslint-disable-next-line
 server.use((req, res, next) => {

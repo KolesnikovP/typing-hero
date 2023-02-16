@@ -15,14 +15,14 @@ export const gameSessionSlice = createSlice({
   reducers: {
     // @PayloadAction - это тип, который используется для передачи данных в экшене. Он позволяет определить
     // что мы ожидаем получить в качестве данных в экшене.
-    setTypingText: (state, action?: PayloadAction<(string|number)[] | string>) => {
+    setTypingText: (state, action: PayloadAction<(string|number)[] | string>) => {
       if (typeof action.payload === 'string') {
         state.typingText = action.payload.split('');
       } else {
         state.typingText = action.payload;
       }
     },
-    setMistakeCount: (state, action: PayloadAction<number>) => {
+    setMistakeCount: (state) => {
       state.mistakes += 1;
     },
     setLetterCount: (state, action: PayloadAction<(string | number)[]>) => {
