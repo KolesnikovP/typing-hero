@@ -1,9 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { localHost } from 'shared/Constants/app.constants';
 import { User, userActions } from 'entities/User';
 import { USER_LOCAL_STORAGE_KEY } from 'shared/Constants/localStorage';
-import { ThunkConfig, ThunkExtraArg } from 'app/providers/StoreProvider';
+import { ThunkConfig } from 'app/providers/StoreProvider';
 /*
  @createAsyncThunk - это функция, которая создает асинхронный экшен.
  В качестве первого аргумента она принимает название экшена,
