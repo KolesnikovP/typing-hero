@@ -35,7 +35,10 @@ export const loginByUsername = createAsyncThunk<User, LoginByUsernamePayload, Th
 
       dispatch(userActions.setAuthData(response.data));
 
-      extra.navigate('/about');
+      if (extra.navigate) {
+        extra.navigate('/about');
+      }
+
       return response.data;
     } catch (error) {
       console.log(error);

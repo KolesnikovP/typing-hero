@@ -43,7 +43,7 @@ export const GameSession = (props: GameSessionProps) => {
   const onFinish = (values: { textFromInput: string | undefined }) => {
     setCurrentKey('');
     setIndexForCheck(0);
-    refText.current.focus();
+    refText.current?.focus();
     if (values.textFromInput) {
       dispatch(gameSessionActions.setTypingText(values.textFromInput));
     }
@@ -57,7 +57,7 @@ export const GameSession = (props: GameSessionProps) => {
     const textToArray = value.split('');
     dispatch(gameSessionActions.setTypingText(textToArray));
     // setTypingText(textToArray);
-    refText.current.focus();
+    refText.current?.focus();
   };
 
   const keyChecker = (event: React.KeyboardEvent) => {
@@ -91,12 +91,12 @@ export const GameSession = (props: GameSessionProps) => {
 
   const [selectedTimer, setSelectedTimer] = useState<number>(1);
   const [countDownTimer, setCountDownTimer] = useState(0);
-  const onSelectHandler = useCallback((value: number) => {
+  const onSelectHandler = useCallback((value: number | string) => {
     const THREE_DAYS_IN_MS = Number(value) * 60 * 1000;
     const NOW_IN_MS = new Date().getTime();
     console.log(NOW_IN_MS, '<<<');
     const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
-    setSelectedTimer(value);
+    setSelectedTimer(Number(value));
     setCountDownTimer(dateTimeAfterThreeDays);
   }, []);
 
