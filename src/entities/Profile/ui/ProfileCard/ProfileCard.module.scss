@@ -1,0 +1,27 @@
+.data {
+  margin-top: 30px;
+}
+
+.input {
+  margin-top: 10px;
+}
+
+.loading,
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // просто чтоб не схлопывался
+  height: 100%;
+}
+
+.AvatarWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Name {
+  margin-left: 15px;
+}

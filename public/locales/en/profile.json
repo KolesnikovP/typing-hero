@@ -2,5 +2,14 @@
   "Профиль": "Profile",
   "Редактировать": "Edit",
   "Ваше имя": "Your first name",
-  "Ваша фамилия": "Your last name"
+  "Ваша фамилия": "Your last name",
+  "Попробуйте перезагрузить": "Try to reload the page",
+  "Ошибка": "Error",
+  "Отменить": "Cancel",
+  "Имя": "First name",
+  "Фамилия": "Last name",
+  "Возраст": "Age",
+  "Никнейм": "Nick name",
+  "Страна": "Country",
+  "Аватар": "Avatar"
 }

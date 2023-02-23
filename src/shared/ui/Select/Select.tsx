@@ -1,5 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import React, { memo, ReactNode, SelectHTMLAttributes } from 'react';
+import React, {
+  memo, ReactNode, SelectHTMLAttributes, useMemo,
+} from 'react';
 import cls from './Select.module.scss';
 
 type OptionsType = {
@@ -13,7 +15,7 @@ interface SelectProps extends HTMLSelectProps{
   className?: string
   label?: string
   options: OptionsType[]
-  onSelect?: (value: string | number) => void
+  onSelect?: (value: string) => void
 }
 
 export const Select = memo((props: SelectProps) => {

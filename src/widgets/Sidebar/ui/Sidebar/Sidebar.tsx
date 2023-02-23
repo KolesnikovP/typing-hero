@@ -1,8 +1,8 @@
-import React, { memo, useMemo, useState } from 'react';
+import React, { memo, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ToggleSwitch } from 'widgets/ToggleSwitch';
 import { LangSwitcher } from 'widgets/LangSwitcher/LangSwitcher';
-import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
+import { Button, ButtonSize } from 'shared/ui/Button/Button';
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai';
 import { useTranslation } from 'react-i18next';
 import { SidebarItemList } from '../../model/items';
@@ -23,13 +23,16 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
       className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
     >
       <div className={cls.items}>
-        {SidebarItemList.map(({ path, text, icon }) => (
+        {SidebarItemList.map(({
+          path, text, icon, authOnly,
+        }) => (
           <SidebarItem
             key={text}
             path={path}
             text={text}
             icon={icon}
             collapsed={collapsed}
+            authOnly={authOnly}
           />
         ))}
       </div>

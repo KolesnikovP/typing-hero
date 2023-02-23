@@ -13,17 +13,21 @@ interface TextProps {
   title?: string
   text?: string
   theme?: TextTheme
+  align?: 'left' | 'center' | 'right'
 }
 
 export const Text = memo((props: TextProps) => {
   const {
-    className, title, text, theme = TextTheme.PRIMARY,
+    className, title, text, align = 'left', theme = TextTheme.PRIMARY,
   } = props;
 
   const mods = {
     [cls.primary]: theme === TextTheme.PRIMARY,
     [cls.secondary]: theme === TextTheme.SECONDARY,
     [cls.error]: theme === TextTheme.ERROR,
+    [cls.left]: align === 'left',
+    [cls.center]: align === 'center',
+    [cls.right]: align === 'right',
   };
 
   return (
