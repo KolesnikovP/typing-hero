@@ -1,47 +1,86 @@
-import { Button, Modal as ModalAnt } from 'antd';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useState } from 'react';
-import TextArea from 'antd/lib/input/TextArea';
-import { useTranslation } from 'react-i18next';
-import cls from './Modal.module.css';
+import React, {
+  ReactNode, useCallback, useEffect, useRef, useState,
+} from 'react';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { Portal } from 'shared/ui/Portal/Portal';
+import cls from './Modal.module.scss';
 
 interface ModalProps {
   className?: string
-  modalHandler: (value: string) => void
+  children?: ReactNode
+  isOpen?: boolean
+  onClose?: () => void
+  lazy?: boolean;
 }
 
-export const Modal = ({ className, modalHandler }: ModalProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [value, setValue] = useState('');
+const ANIMATION_DELAY = 300;
 
-  const showModal = () => {
-    setIsModalOpen(true);
+export const Modal = (props: ModalProps) => {
+  const {
+    className, children, isOpen, onClose, lazy,
+  } = props;
+
+  const [isClose, setIsClose] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsMounted(true);
+    }
+  }, [isOpen]);
+
+  const closeHandler = useCallback(() => {
+    if (onClose) {
+      setIsClose(true);
+      timerRef.current = setTimeout(() => {
+        onClose();
+        setIsClose(false);
+      }, ANIMATION_DELAY);
+    }
+  }, [onClose]);
+
+  const onKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      closeHandler();
+    }
+  }, [closeHandler]);
+
+  // good practice is clear all timeouts when component did onmount
+  useEffect(() => {
+    if (isOpen) {
+      window.addEventListener('keydown', onKeyDown);
+    }
+
+    return () => {
+      clearTimeout(timerRef.current);
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isOpen, onKeyDown]);
+
+  const onContentClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
   };
 
-  const handleOk = () => {
-    modalHandler(value);
-    setIsModalOpen(false);
+  const mods: Mods = {
+    [cls.opened]: isOpen,
+    [cls.closed]: isClose,
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+  if (lazy && !isOpen) {
+    return null;
+  }
 
-  const { t } = useTranslation('gamepage');
   return (
-    <>
-      <Button type='primary' onClick={showModal}>
-        {t('openModal')}
-      </Button>
-      <ModalAnt title='Basic Modal' open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <TextArea
-          defaultValue='Enter text for typing'
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          placeholder='Enter text for typing'
-          autoSize={{ minRows: 3, maxRows: 5 }}
-        />
-      </ModalAnt>
-    </>
+    <Portal>
+      <div className={classNames(cls.Modal, mods, [className])}>
+        <div className={cls.overlay} onClick={closeHandler}>
+          <div className={cls.content} onClick={onContentClick}>
+            {children}
+          </div>
+        </div>
+      </div>
+    </Portal>
   );
 };

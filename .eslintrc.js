@@ -4,10 +4,7 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
-  ],
+  extends: ['plugin:react/recommended', 'airbnb', 'plugin:storybook/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -16,15 +13,17 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-  ],
+  plugins: ['react', '@typescript-eslint', 'react-hooks'],
   rules: {
-    'react/jsx-indent': [0, { indentMode: 2, ignoreTernaryOperator: true }],
+    'react/jsx-indent': [0, {
+      indentMode: 2,
+      ignoreTernaryOperator: true,
+    }],
     indent: [2, 2],
     'no-unused-vars': 'warn',
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', 'tsx', 'ts'] }],
+    'react/jsx-filename-extension': [1, {
+      extensions: ['.js', '.jsx', 'tsx', 'ts'],
+    }],
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
@@ -37,9 +36,27 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'import/no-extraneous-dependencies': 'off',
     'jsx-a11y/no-static-element-interactions': 'warn',
-    'max-len': ['warn', { code: 140 }],
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interaction': 'off',
+    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+    'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
+    'no-param-reassign': 'off',
+    'no-undef': 'off',
+    'max-len': ['warn', {
+      code: 140,
+    }],
+    'react/button-has-type': 'off',
   },
+
   globals: {
     __IS_DEV__: true,
+    __API__: true,
   },
+  // позволяет переопределять правила для каких то файлов
+  overrides: [{
+    files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
+    rules: {
+      'i18next/no-literal-string': 'off',
+    },
+  }],
 };

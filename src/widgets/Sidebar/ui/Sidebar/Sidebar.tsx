@@ -1,23 +1,52 @@
+import React, { memo, useMemo, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import React, { useState } from 'react';
 import { ToggleSwitch } from 'widgets/ToggleSwitch';
 import { LangSwitcher } from 'widgets/LangSwitcher/LangSwitcher';
+import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
+import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai';
+import { useTranslation } from 'react-i18next';
+import { SidebarItemList } from '../../model/items';
+import { SidebarItem } from '../SidebarItem/SidebarItem';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
   className?: string
 }
 
-export const Sidebar = ({ className }: SidebarProps) => {
+export const Sidebar = memo(({ className }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState(false);
+  const { t } = useTranslation();
 
   return (
-    <div className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}>
-      <button type='button' onClick={() => setCollapsed((prevState) => !prevState)}>toggle</button>
+    <div
+      data-testid='sidebar'
+      className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
+    >
+      <div className={cls.items}>
+        {SidebarItemList.map(({ path, text, icon }) => (
+          <SidebarItem
+            key={text}
+            path={path}
+            text={text}
+            icon={icon}
+            collapsed={collapsed}
+          />
+        ))}
+      </div>
+      <Button
+        data-testid='sidebar-toggle'
+        type='button'
+        onClick={() => setCollapsed((prevState) => !prevState)}
+        className={cls.collapseBtn}
+        size={ButtonSize.L}
+      >
+        {collapsed ? <AiOutlineDoubleRight size={18} /> : <AiOutlineDoubleLeft size={18} />}
+      </Button>
+      {/* <BugButton /> */}
       <div className={cls.switchers}>
-        <ToggleSwitch />
-        <LangSwitcher />
+        <LangSwitcher short={collapsed} className={cls.lang} />
+        <ToggleSwitch short={collapsed} />
       </div>
     </div>
   );
-};
+});

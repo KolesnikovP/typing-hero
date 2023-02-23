@@ -3,7 +3,14 @@
  * https://jestjs.io/docs/configuration
  */
 
+import path from 'path';
+
 export default {
+  // A set of global variables that need to be available in all test environments
+  globals: {
+    __IS_DEV__: true,
+    __API__: '',
+  },
   // The root directory that Jest should scan for tests and modules within
   rootDir: '../../',
   clearMocks: true,
@@ -19,6 +26,23 @@ export default {
     'node_modules',
   ],
 
+  // The glob patterns Jest uses to detect test files
+  testMatch: [
+    '<rootDir>src/**/*(*.)@(spec|test).[jt]s?(x)',
+  ],
+
+  // абсолютные импорты для тестов
+  modulePaths: ['<rootDir>/src'],
+
+  // для работы jest with react testing library
+  setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
+
+  // для моков стилей
+  moduleNameMapper: {
+    '\\.(s?css|less)$': 'identity-obj-proxy',
+    '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+  },
+
   // An array of file extensions your modules use
   moduleFileExtensions: [
     'js',
@@ -29,11 +53,6 @@ export default {
     'tsx',
     'json',
     'node',
-  ],
-
-  // The glob patterns Jest uses to detect test files
-  testMatch: [
-    '<rootDir>src/**/*(*.)@(spec|test).[jt]s?(x)',
   ],
 
   // All imported modules in your tests should be mocked automatically
@@ -90,9 +109,6 @@ export default {
 
   // A path to a module which exports an async function that is triggered once after all test suites
   // globalTeardown: undefined,
-
-  // A set of global variables that need to be available in all test environments
-  // globals: {},
 
   // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
   // maxWorkers: "50%",

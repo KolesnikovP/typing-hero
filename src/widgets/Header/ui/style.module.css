@@ -1,8 +1,0 @@
-.Header {
-  width: 100%;
-  height: var(--header-height);
-  display: flex;
-  justify-content: center;
-  background: var(--inverted-bg-color);
-  color: var(--secondary-font-color)
-}

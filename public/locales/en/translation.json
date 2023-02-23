@@ -1,5 +1,21 @@
 {
   "en": "English",
   "rus": "Russian",
-  "language": "Language"
+  "language": "English",
+  "pageNotFound": "Page not found",
+  "ErrorMessage": "Ooops! Something went wrong",
+  "ImitateError": "Imitate Error",
+  "throwError": "throwError",
+  "shortLanguage": "eng",
+  "login": "login",
+  "Войти": "Login",
+  "Выйти": "Logout",
+  "Главная": "Main",
+  "Профиль": "Profile",
+  "О проекте": "About",
+  "Активность": "Activity",
+  "Статьи": "Articles",
+  "formAuthTitle": "Authorization form",
+  "Введен неверный логин или пароль": "Invalid username or password",
+  "Profile Page": "Profile page"
 }

@@ -1,77 +1,55 @@
-import {
-  AppstoreOutlined, HomeOutlined, ProfileOutlined, UserOutlined,
-} from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Menu } from 'antd';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from './style.module.css';
+import { UserOutlined } from '@ant-design/icons';
+import React, { memo, useCallback, useState } from 'react';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { useTranslation } from 'react-i18next';
+import { LoginModal } from 'features/AuthByUsername';
+import { FaRegKeyboard } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserAuthData, userActions } from 'entities/User';
+import styles from './Header.module.scss';
 
-const items: MenuProps['items'] = [
+const items = [
   {
-    label: 'Главная',
-    key: '/main',
-    icon: <HomeOutlined />,
-  },
-  {
-    label: 'Режим',
-    key: 'app',
-    icon: <AppstoreOutlined />,
-    disabled: true,
-  },
-  {
-    label: 'Результаты',
-    key: '/results',
-    icon: <ProfileOutlined />,
-    children: [
-      {
-        type: 'group',
-        label: 'Item 1',
-        children: [
-          {
-            label: 'Option 1',
-            key: 'setting:1',
-          },
-          {
-            label: 'Option 2',
-            key: 'setting:2',
-          },
-        ],
-      },
-      {
-        type: 'group',
-        label: 'Item 2',
-        children: [
-          {
-            label: 'Option 3',
-            key: 'setting:3',
-          },
-          {
-            label: 'Option 4',
-            key: 'setting:4',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: 'Профиль',
-    key: '/profile',
+    label: 'Войти',
+    key: 'login',
     icon: <UserOutlined />,
   },
 ];
 
-const Header: React.FC = () => {
-  const [current, setCurrent] = useState('mail');
-  const navigate = useNavigate();
+const Header: React.FC = memo(() => {
+  const { t } = useTranslation();
+  const [isAuthModal, setIsAuthModal] = useState(false);
+  const userAuthData = useSelector(getUserAuthData);
+  const dispatch = useDispatch();
 
-  const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
-    setCurrent(e.key);
-    navigate(`${e.keyPath}`);
-  };
+  const onCloseModal = useCallback(() => {
+    setIsAuthModal(false);
+  }, []);
 
-  return <Menu className={styles.Header} onClick={onClick} selectedKeys={[current]} mode='horizontal' items={items} />;
-};
+  const onOpenModal = useCallback(() => {
+    setIsAuthModal(true);
+  }, []);
+
+  const onLogout = useCallback(() => {
+    dispatch(userActions.logout());
+  }, [dispatch]);
+
+  return (
+    <div className={styles.Header}>
+      <span className={styles.LogoWrapper}>
+        <FaRegKeyboard size={22} />
+        <span>T-Hero</span>
+      </span>
+      {userAuthData
+        ? (
+          <Button type='button' theme={ButtonTheme.CLEAR_INVERTED} onClick={onLogout}>{t('Выйти')}</Button>
+        )
+        : (
+          <Button type='button' theme={ButtonTheme.CLEAR_INVERTED} onClick={onOpenModal}>{t('Войти')}</Button>
+        )}
+      {isAuthModal && <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />}
+    </div>
+  );
+});
 
 export default Header;

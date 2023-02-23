@@ -1,0 +1,18 @@
+.Header {
+  padding: 0 var(--padding-xl);
+  width: 100%;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--primary-color);
+  color: var(--inverted-primary-color);
+}
+
+.LogoWrapper {
+    display: flex;
+    align-items: center;
+  :first-child {
+    margin-right: var(--padding-m);
+  }
+}
