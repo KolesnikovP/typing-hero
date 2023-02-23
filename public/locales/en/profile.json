@@ -6,10 +6,15 @@
   "Попробуйте перезагрузить": "Try to reload the page",
   "Ошибка": "Error",
   "Отменить": "Cancel",
-  "Имя": "First name",
-  "Фамилия": "Last name",
+  "Имя": "Firstname",
+  "Фамилия": "Lastname",
   "Возраст": "Age",
-  "Никнейм": "Nick name",
+  "Никнейм": "Nickname",
   "Страна": "Country",
-  "Аватар": "Avatar"
+  "Аватар": "Avatar",
+  "Ошибка сервера при сохранении": "Server error on save",
+  "Некорректный возраст": "Incorrect age",
+  "Неверно указана страна": "Incorrect country",
+  "Имя и фамилия обязательны": "Firstname and Lastname can't be empty",
+  "Данные не указаны": "No data"
 }
