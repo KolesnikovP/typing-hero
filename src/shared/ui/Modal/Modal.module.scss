@@ -36,15 +36,10 @@
 .content {
   padding: 20px;
   border-radius: 12px;
-  background: var(--inverted-bg-color);
-  color: var(--primary-color);
+  background: var(--primary-color);
+  color: var(--primary-font-color);
   transition: 0.2s transform;
   transform: scale(0.5);
-  max-width: 60%;
 }
 
-.Modal.dark {
-  --bg-color: #497174;
-  --primary-color: #393E46;
-}
 

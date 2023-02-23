@@ -1,8 +1,11 @@
 import { UserOutlined } from '@ant-design/icons';
-import React, { useCallback, useState } from 'react';
-import { Modal } from 'shared/ui/Modal/Modal';
+import React, { memo, useCallback, useState } from 'react';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
+import { LoginModal } from 'features/AuthByUsername';
+import { FaRegKeyboard } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserAuthData, userActions } from 'entities/User';
 import styles from './Header.module.scss';
 
 const items = [
@@ -13,23 +16,40 @@ const items = [
   },
 ];
 
-const Header: React.FC = () => {
-  const [isAuthModal, setIsAuthModal] = useState(false);
+const Header: React.FC = memo(() => {
   const { t } = useTranslation();
+  const [isAuthModal, setIsAuthModal] = useState(false);
+  const userAuthData = useSelector(getUserAuthData);
+  const dispatch = useDispatch();
 
-  const onToggleModal = useCallback(() => {
-    setIsAuthModal((prevState) => !prevState);
+  const onCloseModal = useCallback(() => {
+    setIsAuthModal(false);
   }, []);
+
+  const onOpenModal = useCallback(() => {
+    setIsAuthModal(true);
+  }, []);
+
+  const onLogout = useCallback(() => {
+    dispatch(userActions.logout());
+  }, [dispatch]);
 
   return (
     <div className={styles.Header}>
-      <Button type='button' theme={ButtonTheme.CLEAR_INVERTED} onClick={onToggleModal}>{t('login')}</Button>
-      <Modal isOpen={isAuthModal} onClose={() => setIsAuthModal(false)}>
-        some text
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, minus?
-      </Modal>
+      <span className={styles.LogoWrapper}>
+        <FaRegKeyboard size={22} />
+        <span>T-Hero</span>
+      </span>
+      {userAuthData
+        ? (
+          <Button type='button' theme={ButtonTheme.CLEAR_INVERTED} onClick={onLogout}>{t('Выйти')}</Button>
+        )
+        : (
+          <Button type='button' theme={ButtonTheme.CLEAR_INVERTED} onClick={onOpenModal}>{t('Войти')}</Button>
+        )}
+      {isAuthModal && <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />}
     </div>
   );
-};
+});
 
 export default Header;

@@ -1,11 +1,106 @@
-.ToggleSwitch {
+//.ToggleSwitch {
+//  display: flex;
+//  align-items: center;
+//  width: 50px;
+//  border: none;
+//  background: none;
+//}
+//
+//.children {
+//  margin: 0;
+//}
+
+.ThemeMode {
   display: flex;
   align-items: center;
-  width: 50px;
-  border: none;
-  background: none;
+  color: var(--color-text);
+  cursor: pointer;
+  .Placeholder {
+    margin-left: 3px;
+  }
 }
 
-.children {
-  margin: 0;
+.ToggleSwitch {
+  position: relative;
+  display: inline-block;
+  width: 110px;
+  height: 34px;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .Slider {
+    border-radius: 6px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--secondary-color);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .Slider:before {
+    border-radius: 6px;
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 60px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--primary-color);
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+  }
+
+  input:checked + .Slider {
+    //border-radius: 8px;
+    background-color: var(--secondary-color);
+  }
+
+  input:focus + .Slider {
+    box-shadow: 0 0 1px var(--primary-color);
+  }
+
+  input:checked + .Slider:before {
+    -webkit-transform: translateX(40px);
+    -ms-transform: translateX(40px);
+    transform: translateX(40px);
+  }
+
+  .Labels {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    font-family: sans-serif;
+    transition: all 0.4s ease-in-out;
+  }
+
+  .Labels.DarkMode {
+    left: 12px;
+  }
+
+  .Labels.LightMode {
+    -webkit-transform: translateX(50px);
+    -ms-transform: translateX(50px);
+    transform: translateX(50px);
+  }
+
+  input:checked~.Labels::after {
+    opacity: 0;
+  }
+
+  input:checked~.Labels::before {
+    opacity: 1;
+  }
+
 }
+

@@ -6,5 +6,9 @@ interface LoaderProps {
 }
 
 export const Loader = ({ className }: LoaderProps) => (
-  <div className={classNames(cls.PageLoader, {}, [className, 'lds-hourglass'])} />
+  <div className={classNames(cls['lds-facebook'], {}, ['lds-facebook'])}>
+    <div />
+    <div />
+    <div />
+  </div>
 );

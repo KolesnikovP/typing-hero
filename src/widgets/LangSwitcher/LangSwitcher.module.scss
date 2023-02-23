@@ -1,1 +1,9 @@
-
+.LangSwitcher {
+  display: flex;
+  align-items: center;
+  color: var(--color-text);
+  cursor: pointer;
+  .Placeholder {
+      margin-left: 10px;
+  }
+}

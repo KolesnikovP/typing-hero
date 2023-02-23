@@ -1,7 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import React from 'react';
+import React, { memo } from 'react';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { IoLanguage } from 'react-icons/io5';
 import cls from './LangSwitcher.module.scss';
 
 interface LangSwitcherProps {
@@ -9,7 +10,7 @@ interface LangSwitcherProps {
   short?: boolean
 }
 
-export const LangSwitcher = ({ className, short }: LangSwitcherProps) => {
+export const LangSwitcher = memo(({ className, short }: LangSwitcherProps) => {
   const { t, i18n } = useTranslation();
   const toggleLang = () => {
     i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
@@ -17,10 +18,12 @@ export const LangSwitcher = ({ className, short }: LangSwitcherProps) => {
   return (
     <Button
       className={classNames(cls.LangSwitcher, {}, [className])}
-      theme={ButtonTheme.CLEAR}
+      theme={ButtonTheme.CLEAR_INVERTED}
+      // square
       onClick={toggleLang}
     >
-      {t(short ? 'shortLanguage' : 'language')}
+      <IoLanguage size={18} />
+      {!short && <span className={cls.Placeholder}>{t(short ? 'shortLanguage' : 'language')}</span>}
     </Button>
   );
-};
+});

@@ -1,10 +1,24 @@
 {
   "ErrorMessage": "ErrorMessage",
   "ImitateError": "ImitateError",
+  "Profile Page": "Profile Page",
   "aboutPage": "aboutPage",
   "customText": "customText",
+  "formAuthTitle": "formAuthTitle",
   "language": "language",
   "login": "login",
   "openModal": "openModal",
-  "pageNotFound": "pageNotFound"
+  "pageNotFound": "pageNotFound",
+  "shortLanguage": "shortLanguage",
+  "Активность": "Активность",
+  "Ваша фамилия": "Ваша фамилия",
+  "Ваше имя": "Ваше имя",
+  "Введен неверный логин или пароль": "Введен неверный логин или пароль",
+  "Войти": "Войти",
+  "Выйти": "Выйти",
+  "Главная": "Главная",
+  "О проекте": "О проекте",
+  "Профиль": "Профиль",
+  "Редактировать": "Редактировать",
+  "Статьи": "Статьи"
 }

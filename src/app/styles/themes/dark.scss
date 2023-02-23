@@ -1,12 +1,14 @@
-.dark {
-  --bg-color: #497174;
+.app_dark_theme {
+  --bg-color: #5b616b;
   --inverted-bg-color: #e8e8ea;
 
   --primary-color: #393E46;
   --inverted-primary-color: #fff;
-  --secondary-color: #546bec;
-  --inverted-secondary-color: #B00020;
+  --secondary-color: #5b616b;
+  --inverted-secondary-color: #edeef0;
 
-  --primary-font-color: #D6E4E5;
+
+  --primary-font-color: #e8e8ea;
+  --inverted-primary-font-color: #393E46;
   --secondary-font-color: #497174;
 }
