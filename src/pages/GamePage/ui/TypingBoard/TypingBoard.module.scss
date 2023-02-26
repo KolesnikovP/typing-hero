@@ -1,0 +1,23 @@
+.TypingBoardWrapper {
+  .TypingBoard {
+    width: 700px;
+    height: 300px;
+    border-radius: 10px;
+    padding: 10px;
+    background: #2f3e46;
+    outline: none;
+  }
+}
+
+.inactiveBoard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+  height: 300px;
+  border-radius: 10px;
+  padding: 10px;
+  background: #2f3e46;
+  outline: none;
+}

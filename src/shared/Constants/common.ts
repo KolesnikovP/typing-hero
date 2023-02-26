@@ -4,6 +4,12 @@ export enum CurrencyEnum {
   USD = 'USD'
 }
 
+export enum ConvertSecondsEnum {
+  MINUTE = 60,
+  HOUR = 3600,
+  DAY = 86400
+}
+
 export enum CountryEnum {
   Russia = 'Russia',
   Armenia = 'Armenia',

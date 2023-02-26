@@ -96,7 +96,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
           className={cls.input}
           onSelect={onChangeCountry}
           disabled={readonly}
-          options={[{ value: 'Russia', data: 'Russia' }]}
+          options={[{ value: 'Russia', content: 'Russia' }]}
         />
         <Input
           value={data?.nickname}

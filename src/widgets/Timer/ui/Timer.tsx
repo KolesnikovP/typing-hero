@@ -1,46 +1,78 @@
-import { useCountdown } from '../hooks/useCountDown';
+import { useTimer } from 'react-timer-hook';
+import { Digit } from 'widgets/Timer/ui/Digit/Digit';
+import { useEffect, useState } from 'react';
 import cls from './Timer.module.scss';
 
-const DateTimeDisplay = ({ value, type, isDanger }: {value: number, type: string, isDanger: boolean}) => (
-  <div className={isDanger ? cls['countdown danger'] : cls.countdown}>
-    <p>{value}</p>
-    <span>{type}</span>
-  </div>
-);
+interface TimerProps {
+  onExpireTime: () => void
+  // onExpirePreloader: () => void
+  target: number
+  isStart: boolean
+}
 
-const ExpiredNotice = () => (
-  <div className={cls['expired-notice']}>
-    <span>Expired!!!</span>
-    <p>Please select a future date and time.</p>
-  </div>
-);
+export const Timer = (props : TimerProps) => {
+  const {
+    target, isStart, onExpireTime,
+  } = props;
+  const time = new Date();
+  time.setSeconds(time.getSeconds() + target);
 
-const ShowCounter = ({
-  days, hours, minutes, seconds,
-}: {days: any, hours: any, minutes: any, seconds: any}) => (
-  <div className={cls['show-counter']}>
-    <DateTimeDisplay value={days} type='Days' isDanger={days <= 3} />
-    <p>:</p>
-    <DateTimeDisplay value={hours} type='Hours' isDanger={false} />
-    <p>:</p>
-    <DateTimeDisplay value={minutes} type='Mins' isDanger={false} />
-    <p>:</p>
-    <DateTimeDisplay value={seconds} type='Seconds' isDanger={false} />
-  </div>
-);
+  const {
+    seconds,
+    minutes,
+    hours,
+    days,
+    isRunning,
+    start,
+    pause,
+    resume,
+    restart,
+    // eslint-disable-next-line no-use-before-define
+  } = useTimer({ expiryTimestamp: time, autoStart: false, onExpire: () => onExpireTime() });
 
-export const Timer = ({ target } : {target: number}) => {
-  const [days, hours, minutes, seconds] = useCountdown(target);
+  useEffect(() => {
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + target);
+    restart(time, false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target]);
 
-  if (days + hours + minutes + seconds <= 0) {
-    return <ExpiredNotice />;
-  }
+  useEffect(() => {
+    if (isStart) {
+      start();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isStart]);
+
+  useEffect(() => {
+    if (!isRunning) {
+      const time = new Date();
+      time.setSeconds(time.getSeconds() + target);
+      restart(time, false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isRunning]);
+
   return (
-    <ShowCounter
-      days={days}
-      hours={hours}
-      minutes={minutes}
-      seconds={seconds}
-    />
+    <div className={cls.TimerContainer}>
+      {/* {days !== undefined ? <Digit value={days} title='DAYS' /> : null} */}
+      {/* {days !== undefined ? ( */}
+      {/*   <span className={cls.SeparatorContainer}> */}
+      {/*     <span className={cls.Separator} /> */}
+      {/*     <span className={cls.Separator} /> */}
+      {/*   </span> */}
+      {/* ) : null} */}
+      {/* <Digit value={hours} title='HOURS' /> */}
+      {/* <span className={cls.SeparatorContainer}> */}
+      {/*   <span className={cls.Separator} /> */}
+      {/*   <span className={cls.Separator} /> */}
+      {/* </span> */}
+      <Digit value={minutes} title='MINUTES' />
+      <span className={cls.SeparatorContainer}>
+        <span className={cls.Separator} />
+        <span className={cls.Separator} />
+      </span>
+      <Digit value={seconds} title='SECONDS' />
+    </div>
   );
 };

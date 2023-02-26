@@ -1,0 +1,16 @@
+.SetupGameSessionModal {
+  width: 500px;
+}
+
+.modalItem {
+  margin-bottom: 20px;
+}
+
+.buttonsGroup {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  .submitBtn {
+    margin-left: 10px;
+  }
+}

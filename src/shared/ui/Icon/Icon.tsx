@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
+import { ReactNode, SVGProps } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import HomeIconSVG from '../../assets/icons/HomeIcon.svg';
+import ChevronIconLeftSVG from '../../assets/icons/ChevronIconLeft.svg';
 import LightIconSVG from '../../assets/icons/Light.svg';
 import UserIconSVG from '../../assets/icons/userIcon.svg';
 
@@ -10,20 +11,22 @@ export enum IconName {
   HOME_ICON = 'homeIcon',
   LIGHT_ICON = 'lightIcon',
   USER_ICON = 'userIcon',
+  CHEVRON_LEFT_ICON = 'chevronLeftIcon,'
 }
 
 const icons: Record<IconName, ReactNode> = {
   homeIcon: <HomeIconSVG />,
   lightIcon: <LightIconSVG />,
   [IconName.USER_ICON]: <UserIconSVG />,
+  [IconName.CHEVRON_LEFT_ICON]: <ChevronIconLeftSVG />,
 };
 
-type IconProps = {
+interface IconProps {
   type: IconName;
   color?: string;
   transform?: 'rotate90' | 'rotate180';
   className?: string;
-};
+}
 
 export const Icon = (props: IconProps) => {
   const {

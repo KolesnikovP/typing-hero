@@ -6,7 +6,12 @@ const initialState: GameSessionSchema = {
   typingText: generateText().split(''),
   mistakes: 0,
   sumLetters: 0,
+  charsTyped: 0,
   isStarted: false,
+  speed: 0,
+  timer: 30,
+  isCustomText: false,
+  isPreloaderActive: false,
 };
 
 export const gameSessionSlice = createSlice({
@@ -30,6 +35,28 @@ export const gameSessionSlice = createSlice({
     },
     setIsStarted: (state, action: PayloadAction<boolean>) => {
       state.isStarted = action.payload;
+    },
+    setIsPreloadActive: (state, action: PayloadAction<boolean>) => {
+      state.isPreloaderActive = action.payload;
+    },
+    setCharsTyped: (state) => {
+      state.charsTyped += 1;
+    },
+    setSpeed: (state) => {
+      // const charsTyped = action.payload;
+      state.speed = state.charsTyped / (state.timer / 60);
+    },
+    setTimer: (state, action: PayloadAction<number>) => {
+      state.timer = action.payload;
+    },
+    setIsCustomText: (state, action: PayloadAction<boolean>) => {
+      state.isCustomText = action.payload;
+      if (!state.isCustomText) {
+        state.typingText = generateText().split('');
+      }
+    },
+    setInitialState: (state) => {
+
     },
   },
 });
