@@ -16,7 +16,7 @@ const Template: ComponentStory<typeof Select> = (args) => <Select {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  options: [{ value: 'option 1', data: 'some opt 1' }, { value: 'option 2', data: 'some opt 2' }],
+  options: [{ value: 'option 1', content: 'some opt 1' }, { value: 'option 2', content: 'some opt 2' }],
 };
 
 export const Dark = Template.bind({});

@@ -6,7 +6,7 @@ import cls from './Select.module.scss';
 
 type OptionsType = {
   value: string | number
-  data?: ReactNode
+  content?: ReactNode
 }
 
 type HTMLSelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'onSelect'>
@@ -15,7 +15,7 @@ interface SelectProps extends HTMLSelectProps{
   className?: string
   label?: string
   options: OptionsType[]
-  onSelect?: (value: string) => void
+  onSelect?: (value: any) => void
 }
 
 export const Select = memo((props: SelectProps) => {
@@ -30,15 +30,15 @@ export const Select = memo((props: SelectProps) => {
 
   return (
     <div className={classNames(cls.SelectWrapper, {}, [className])}>
-      {label && <label htmlFor={label}>{label}</label>}
+      {label && <span className={cls.Label}>{label}</span>}
       <select
         className={classNames(cls.Select)}
         id={label}
         onChange={onSelectHandler}
         {...otherProps}
       >
-        {options.map(({ value, data }) => (
-          <option key={value} value={value}>{data || value}</option>
+        {options.map(({ value, content }) => (
+          <option key={value} value={value}>{content || value}</option>
         ))}
       </select>
     </div>

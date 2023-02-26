@@ -20,6 +20,7 @@ import {
   getGameSessionSumLetters,
 } from 'features/GameSession/model/selectors/getGameSessionSumLetters/getGameSessionSumLetters';
 import { getTypingText } from 'features/GameSession/model/selectors/getTypingText/getTypingText';
+import { TimerSelect } from 'entities/TimerSelect';
 import cls from './GameSession.module.scss';
 
 interface GameSessionProps {
@@ -89,26 +90,26 @@ export const GameSession = (props: GameSessionProps) => {
 
   const { t } = useTranslation('gamepage');
 
-  const [selectedTimer, setSelectedTimer] = useState<number>(1);
-  const [countDownTimer, setCountDownTimer] = useState(0);
-  const onSelectHandler = useCallback((value: number | string) => {
-    const THREE_DAYS_IN_MS = Number(value) * 60 * 1000;
-    const NOW_IN_MS = new Date().getTime();
-    console.log(NOW_IN_MS, '<<<');
-    const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
-    setSelectedTimer(Number(value));
-    setCountDownTimer(dateTimeAfterThreeDays);
-  }, []);
+  // const [selectedTimer, setSelectedTimer] = useState<number>(1);
+  // const [countDownTimer, setCountDownTimer] = useState(0);
+  // const onSelectHandler = useCallback((value: number | string) => {
+  //   const THREE_DAYS_IN_MS = Number(value) * 60 * 1000;
+  //   const NOW_IN_MS = new Date().getTime();
+  //   console.log(NOW_IN_MS, '<<<');
+  //   const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
+  //   setSelectedTimer(Number(value));
+  //   setCountDownTimer(dateTimeAfterThreeDays);
+  // }, []);
 
   return (
     <div onKeyUp={keyChecker}>
-      <Select
-        defaultValue={selectedTimer}
-        options={[{ value: 0.5, data: '30 секунд' }, { value: 1, data: '1 минута' }, { value: 3, data: '3 минуты' }]}
-        onSelect={onSelectHandler}
-        label='Продолжительность сессии: '
-      />
-      {isStarted && <Timer target={selectedTimer} />}
+      {/* <Select */}
+      {/*   defaultValue={selectedTimer} */}
+      {/*   options={[{ value: 0.5, content: '30 секунд' }, { value: 1, content: '1 минута' }, { content: 3, data: '3 минуты' }]} */}
+      {/*   onSelect={onSelectHandler} */}
+      {/*   label='Продолжительность сессии: ' */}
+      {/* /> */}
+      {/* {isStarted && <Timer target={selectedTimer} />} */}
       {typingText && isStarted && (
         // eslint-disable-next-line max-len
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex,jsx-a11y/tabindex-no-positive
@@ -136,24 +137,22 @@ export const GameSession = (props: GameSessionProps) => {
       </div>
       <Button type='button' onClick={() => setIsStarted(true)}>Begin practice</Button>
       {/* eslint-disable-next-line jsx-a11y/tabindex-no-positive */}
-      <Form onFinish={onFinish} name='basic'>
-        <Form.Item name='textFromInput'>
-          <TextArea name='textFromInputTest' id='textFromInputTest' contentEditable>
-            {typingText.join('')}
-          </TextArea>
-          {/* <TextArea maxLength={600} style={{ height: 120, width: 600 }} defaultValue={typingText.join('')} /> */}
-        </Form.Item>
-        <Form.Item>
-          <Button type='submit'>
-            {t('customText')}
-          </Button>
-        </Form.Item>
-        <button type='button' onClick={() => setIsOpen(true)}>modal</button>
-        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      {/* <Form onFinish={onFinish} name='basic'> */}
+      {/*   <Form.Item name='textFromInput'> */}
+      {/* <TextArea name='textFromInputTest' id='textFromInputTest' defaultValue={typingText.join('')} /> */}
+      {/* <TextArea maxLength={600} style={{ height: 120, width: 600 }} defaultValue={typingText.join('')} /> */}
+      {/* </Form.Item> */}
+      {/* <Form.Item> */}
+      {/* <Button type='submit'> */}
+      {/*   {t('customText')} */}
+      {/* </Button> */}
+      {/* </Form.Item> */}
+      <button type='button' onClick={() => setIsOpen(true)}>modal</button>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
           some text
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, minus?
-        </Modal>
-      </Form>
+      </Modal>
+      {/* </Form> */}
     </div>
   );
 };
