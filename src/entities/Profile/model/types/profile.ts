@@ -1,4 +1,5 @@
 import { CountryEnum, CurrencyEnum } from 'shared/Constants/common';
+import { ValidateProfileError } from './validate';
 
 export interface Profile {
   firstname?: string
@@ -16,5 +17,6 @@ export interface ProfileSchema {
   form?: Profile
   isLoading: boolean
   error?: string
+  validateErrors?: ValidateProfileError[]
   readonly: boolean
 }
