@@ -18,7 +18,7 @@ export const Primary = Template.bind({});
 
 Primary.args = {
   data: {
-    firstname: 'admin',
+    firstname: 'Petr',
     lastname: 'Kolesnikov',
     age: 29,
     currency: CurrencyEnum.RUB,
