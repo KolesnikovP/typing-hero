@@ -19,4 +19,7 @@ export interface BuildOptions {
   isDev: boolean
   port: number
   apiUrl: string
+   /* NOTE: это для того чтобы к примеру сторибук не кидал запросы на сервер и мы
+   * могли разделять среды в которых проект запускается */
+  project: 'storybook' | 'frontend' | 'jest'
 }
