@@ -1,6 +1,4 @@
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import HomeIcon from 'shared/assets/icons/HomeIcon.svg';
-import UserIcon from 'shared/assets/icons/userIcon.svg';
 import { IconName } from 'shared/ui/Icon/Icon';
 
 export interface SidebarItemType {
@@ -19,6 +17,11 @@ export const SidebarItemList: SidebarItemType[] = [
     path: RoutePath.results,
     text: 'Активность',
     icon: IconName.HOME_ICON,
+  },
+  {
+    path: RoutePath.articles,
+    text: 'Статьи',
+    icon: IconName.ARTICLE_ICON,
   },
   {
     path: RoutePath.temp,
