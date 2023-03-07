@@ -50,6 +50,20 @@ server.get('/profile', (req, res) => {
   }
 });
 
+server.get('/articles/:id', (req, res) => {
+  try {
+    const paramsId = req.params.id;
+
+    const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+    const { articles = {} } = db;
+    const result = articles.find(({ id }) => id === paramsId);
+    return res.json(result);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: e.message });
+  }
+});
+
 // проверяем, авторизован ли пользователь
 // eslint-disable-next-line
 server.use((req, res, next) => {

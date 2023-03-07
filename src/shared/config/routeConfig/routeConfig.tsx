@@ -4,7 +4,7 @@ import { GamePage } from 'pages/GamePage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
 import { ArticlesPage } from 'pages/ArticlesPage';
-import { ArticlesDetailPage } from 'pages/ArticlesDetailPage';
+import { ArticlesDetailPage } from 'pages/ArticleDetailsPage';
 
 export type AppRoutesProps = RouteProps & {
   authOnly?: boolean;
