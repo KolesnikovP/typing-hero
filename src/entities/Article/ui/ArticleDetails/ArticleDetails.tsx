@@ -4,14 +4,27 @@ import {
   DynamicModuleLoader,
   ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { memo, useEffect } from 'react';
-import { fetchArticleById } from 'entities/Article/model/services/fetchArticleById/fetchArticleById';
+import { memo, useCallback, useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { Text } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { Icon, IconName } from 'shared/ui/Icon/Icon';
 import {
-  getArticleDetailsData, getArticleDetailsError,
+  ArticleTextBlockComponent,
+} from 'entities/Article/ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
+import {
+  ArticleCodeBlockComponent,
+} from 'entities/Article/ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent';
+import {
+  ArticleImageBlockComponent,
+} from 'entities/Article/ui/ArticleImageBlockComponent/ArticleImageBlockComponent';
+import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
+import { ArticleBlock, ArticleBlockTypeEnum } from '../../model/types/article';
+import {
+  getArticleDetailsData,
+  getArticleDetailsError,
   getArticleDetailsIsLoading,
 } from '../../model/selectors/articleDetails';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
@@ -30,26 +43,40 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
   const { className, id } = props;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  // const isLoading = useSelector(getArticleDetailsIsLoading);
-  const isLoading = true;
+  const isLoading = useSelector(getArticleDetailsIsLoading);
   const article = useSelector(getArticleDetailsData);
   const error = useSelector(getArticleDetailsError);
 
+  const renderBlock = useCallback((block: ArticleBlock) => {
+    switch (block.type) {
+    case ArticleBlockTypeEnum.TEXT:
+      return <ArticleTextBlockComponent key={block.id} className={cls.block} block={block} />;
+    case ArticleBlockTypeEnum.CODE:
+      return <ArticleCodeBlockComponent key={block.id} className={cls.block} block={block} />;
+    case ArticleBlockTypeEnum.IMAGE:
+      return <ArticleImageBlockComponent key={block.id} className={cls.block} block={block} />;
+    default:
+      return null;
+    }
+  }, []);
+
   useEffect(() => {
-    dispatch(fetchArticleById(id));
+    if (__PROJECT__ !== 'storybook') {
+      dispatch(fetchArticleById(id));
+    }
   }, [dispatch, id]);
 
   let content;
 
   if (isLoading) {
     content = (
-      <div>
+      <>
         <Skeleton className={cls.avatar} width={200} height={200} border='50%' />
         <Skeleton className={cls.title} width={300} height={24} />
         <Skeleton className={cls.skeleton} width={600} height={32} />
         <Skeleton className={cls.skeleton} width='100%' height={200} />
         <Skeleton className={cls.skeleton} width='100%' height={200} />
-      </div>
+      </>
     );
   } else if (error) {
     content = (
@@ -57,7 +84,21 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     );
   } else {
     content = (
-      <div>article details</div>
+      <>
+        <div className={cls.avatarWrapper}>
+          <Avatar src={article?.img} size={200} className={cls.avatar} />
+        </div>
+        <Text title={article?.title} text={article?.subtitle} textSize='size_l' />
+        <div className={cls.articleInfo}>
+          <Icon type={IconName.EYE_ICON} className={cls.icon} />
+          <Text text={String(article?.views)} />
+        </div>
+        <div className={cls.articleInfo}>
+          <Icon type={IconName.CALENDAR_ICON} className={cls.icon} />
+          <Text text={article?.createdAt} />
+        </div>
+        {article?.blocks.map(renderBlock)}
+      </>
     );
   }
 

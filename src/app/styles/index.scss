@@ -25,5 +25,6 @@
   flex-grow: 1;
   padding: 15px 15px 15px 35px;
   height: calc(100vh - var(--header-height));
+  width: 100%;
   overflow-y: auto;
 }

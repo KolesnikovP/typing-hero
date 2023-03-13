@@ -14,11 +14,12 @@ interface TextProps {
   text?: string
   theme?: TextTheme
   align?: 'left' | 'center' | 'right'
+  textSize?: 'size_s' | 'size_m' | 'size_l' | 'size_xl'
 }
 
 export const Text = memo((props: TextProps) => {
   const {
-    className, title, text, align = 'left', theme = TextTheme.PRIMARY,
+    className, title, text, align = 'left', theme = TextTheme.PRIMARY, textSize = 'size_m',
   } = props;
 
   const mods = {
@@ -28,6 +29,10 @@ export const Text = memo((props: TextProps) => {
     [cls.left]: align === 'left',
     [cls.center]: align === 'center',
     [cls.right]: align === 'right',
+    [cls.size_s]: textSize === 'size_s',
+    [cls.size_m]: textSize === 'size_m',
+    [cls.size_l]: textSize === 'size_l',
+    [cls.size_xl]: textSize === 'size_xl',
   };
 
   return (
