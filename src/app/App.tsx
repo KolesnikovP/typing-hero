@@ -6,12 +6,13 @@ import { AppRouter } from 'app/router';
 import { Header } from 'widgets/Header';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { Sidebar } from 'widgets/Sidebar';
-import { useDispatch } from 'react-redux';
-import { userActions } from 'entities/User';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInited, userActions } from 'entities/User';
 
 export const App: FC = () => {
   const { theme } = useTheme();
   const dispatch = useDispatch();
+  const userInited = useSelector(getUserInited);
 
   useEffect(() => {
     dispatch(userActions.initAuthData());
@@ -27,7 +28,7 @@ export const App: FC = () => {
         <Header />
         <div className='content-page'>
           <Sidebar />
-          <AppRouter />
+          {userInited && <AppRouter />}
         </div>
         {/* <div className={`app ${theme}`}>{<GamePage />}</div> */}
       </div>

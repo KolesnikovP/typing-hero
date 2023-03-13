@@ -1,12 +1,10 @@
 .Title {
-  font: var(--font-l);
   // FixMe: antd overrides this margin. It's bad.
   margin-bottom: 0;
   color: var(--primary-font-color);
 }
 
 .Text {
-    font: var(--font-m);
     margin-bottom: 0;
     color: var(--primary-font-color);
 }
@@ -36,8 +34,48 @@
 
 .center {
   text-align: center;
-} 
+}
 
 .right {
   text-align: right;
+}
+
+.size_s {
+  .Title {
+    font: var(--font-m);
+  }
+
+  .Text {
+    font: var(--font-s);
+  }
+}
+
+.size_m {
+  .Title {
+    font: var(--font-l);
+  }
+
+  .Text {
+    font: var(--font-m);
+  }
+}
+
+.size_l {
+  .Title {
+    font: var(--font-xl);
+  }
+
+  .Text {
+    font: var(--font-l);
+  }
+}
+
+.size_xl {
+  .Title {
+    font: var(--font-xxl);
+  }
+
+  .Text {
+    font: var(--font-xxl);
+  }
 }

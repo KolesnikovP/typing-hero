@@ -70,3 +70,39 @@ Secondary.args = {
   text: 'Secondary text text',
   theme: TextTheme.SECONDARY,
 };
+
+export const SizeS = Template.bind({});
+
+SizeS.args = {
+  title: 'Secondary title text',
+  text: 'Secondary text text',
+  theme: TextTheme.SECONDARY,
+  textSize: 'size_s',
+};
+
+export const SizeM = Template.bind({});
+
+SizeM.args = {
+  title: 'Secondary title text',
+  text: 'Secondary text text',
+  theme: TextTheme.SECONDARY,
+  textSize: 'size_m',
+};
+
+export const SizeL = Template.bind({});
+
+SizeL.args = {
+  title: 'Secondary title text',
+  text: 'Secondary text text',
+  theme: TextTheme.SECONDARY,
+  textSize: 'size_l',
+};
+
+export const SizeXL = Template.bind({});
+
+SizeXL.args = {
+  title: 'Secondary title text',
+  text: 'Secondary text text',
+  theme: TextTheme.SECONDARY,
+  textSize: 'size_xl',
+};
