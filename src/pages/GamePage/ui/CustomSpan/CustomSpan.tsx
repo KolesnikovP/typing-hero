@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { observer } from 'mobx-react-lite';
-import { useStores } from 'app/providers/hooks/storeHooks';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useTheme } from 'app/providers/ThemeProvider';
-import styles from './style.module.css';
+import React, { useEffect, useState } from 'react'
+import { observer } from 'mobx-react-lite'
+import { useStores } from 'app/providers/hooks/storeHooks'
+import { classNames } from 'shared/lib/classNames/classNames'
+import { useTheme } from 'app/providers/ThemeProvider'
+import styles from './style.module.css'
 
 type CustomSpanType = {
   number: number
@@ -15,11 +15,9 @@ type CustomSpanType = {
 }
 
 const CustomSpan: React.FC<CustomSpanType> = observer(
-  ({
-    letterInGameArray, number, typingText, letterOnKeyUp, indexForCheck, isMistake,
-  }) => {
-    const { typingStore } = useStores();
-    const { theme } = useTheme();
+  ({ letterInGameArray, number, typingText, letterOnKeyUp, indexForCheck, isMistake }) => {
+    const { typingStore } = useStores()
+    const { theme } = useTheme()
 
     return (
       <span
@@ -28,15 +26,15 @@ const CustomSpan: React.FC<CustomSpanType> = observer(
           {
             [styles.isActiveWord]: number === indexForCheck,
             [styles.isTaped]: number < indexForCheck,
-            [styles.isMistake]: isMistake && number === indexForCheck,
+            [styles.isMistake]: isMistake && number === indexForCheck
           },
-          [theme],
+          [theme]
         )}
       >
         {letterInGameArray}
       </span>
-    );
-  },
-);
+    )
+  }
+)
 
-export default CustomSpan;
+export default CustomSpan
